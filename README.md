@@ -1,7 +1,7 @@
 # pg_popyramids
 A PostgreSQL extension for creating several schema in a popyramids database.
 
-INSTALLATION
+Installation
 ------------
 
 Requirements: PostgreSQL 9.3+, postgis extension
