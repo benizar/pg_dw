@@ -61,11 +61,12 @@ Data Marts (DMS)
 ------------
 *pg_popyramids_dms* is an extension that provides some useful materialized views for the popyramids database. The popyramids_database only stores functional data in the ODS schema. Mainly, those materialized views provide geojson datamarts filled up with data summaries, statistics, data agreggated at different levels, (e.g. age groups and units or %) and other convenient functions. These materialized views are application oriented (e.g. for the chichinabo Shiny apps) and they should be used instead of using the ODS schema for app querying purposes.
 
-Log into PostgreSQL and run the following commands. Schema name will be 'dms' and it cannot be changed after installation.
+Log into PostgreSQL and run the following commands. Schema has to be 'dms' and it cannot be changed after installation. We create the schema first so these privileges can be inheritated when we create materialized views.
 
-    CREATE EXTENSION IF NOT EXISTS pg_popyramids_dms;
+    CREATE SCHEMA IF NOT EXISTS dms;
     GRANT USAGE ON SCHEMA dms TO chichinabo;
     ALTER DEFAULT PRIVILEGES IN SCHEMA dms GRANT SELECT ON TABLES TO chichinabo;
+    CREATE EXTENSION IF NOT EXISTS pg_popyramids_dms;
     
 When you create this schema, some materialized views will be created or refreshed. This process took aproximately 8,5ms per ods row in my computer. This depends on the sample data uploaded in previous steps, don't worry and maybe drink some coffee ;)
 
