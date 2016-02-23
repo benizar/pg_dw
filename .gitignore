@@ -1,19 +1,14 @@
-# History files
+results/
+*.so
+tmp/
+*.o
+regression.diffs
+regression.out
+/sql/range_partitioning--*
+!/sql/range_partitioning--*--*.sql
+
+*~
 .Rhistory
-.Rapp.history
-
-# Session Data files
-.RData
-
-# Example code in package build process
-*-Ex.R
-
-# RStudio files
-.Rproj.user/
-
-# produced vignettes
-vignettes/*.html
-vignettes/*.pdf
-
-# OAuth2 token, see https://github.com/hadley/httr/releases/tag/v0.3
-.httr-oauth
+/sql/ods/pg_popyramids_ods--*.sql
+/sql/dms/pg_popyramids_dms--*.sql
+/sql/setup/pg_popyramids_setup--*.sql

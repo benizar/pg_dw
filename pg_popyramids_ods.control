@@ -1,0 +1,5 @@
+comment = 'A PostgreSQL extension for creating an ODS schema in the popyramids database'
+default_version = '0.0.1'
+relocatable = false
+schema = ods
+requires = 'postgis'

@@ -1,0 +1,23 @@
+EXTENSION = pg_popyramids_dms
+EXTVERSION = $(shell grep default_version $(EXTENSION).control | sed -e "s/default_version[[:space:]]*=[[:space:]]*'\([^']*\)'/\1/")
+
+PG_CONFIG = pg_config
+PG93 = $(shell $(PG_CONFIG) --version | egrep " 8\.| 9\.0| 9\.1| 9\.2" > /dev/null && echo no || echo yes)
+
+ifeq ($(PG93),yes)
+DOCS = $(wildcard doc/*.md)
+
+all: sql/dms/$(EXTENSION)--$(EXTVERSION).sql
+
+sql/dms/$(EXTENSION)--$(EXTVERSION).sql: sql/dms/types/*.sql sql/dms/functions/*.sql sql/dms/materialized_views/*.sql sql/dms/queries/*.sql
+	cat $^ > $@
+
+DATA = $(wildcard updates/*--*.sql) sql/dms/$(EXTENSION)--$(EXTVERSION).sql
+EXTRA_CLEAN = sql/dms/$(EXTENSION)--$(EXTVERSION).sql
+else
+$(error Minimum version of PostgreSQL required is 9.3.0)
+endif
+
+
+PGXS := $(shell $(PG_CONFIG) --pgxs)
+include $(PGXS)

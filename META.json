@@ -1,0 +1,52 @@
+{
+   "name": "pg_popyramids",
+   "abstract": "A PostgreSQL extensions for creating a popyramids database",
+   "description": "This library contains a set of PostgreSQL extensions, which creates a basic database structure for storing and analyzing population pyramids.",
+   "version": "0.0.1",
+   "maintainer": [
+      "Benito M. Zaragozí <benizar@gmail.com>"
+   ],
+   "license": "GPL3",
+   "provides": {
+      "pg_popyramids_ods": {
+         "abstract": "A PostgreSQL extension for creating an Operational Data Store (ODS) schema in a popyramids database.",
+         "file": "sql/ods/pg_popyramids_ods.sql",
+         "docfile": "doc/ods/pg_popyramids_ods.md",
+         "version": "0.0.1"
+      },
+      "pg_popyramids_dms": {
+         "abstract": "A PostgreSQL extension for creating a data marts schema in a popyramids database.",
+         "file": "sql/dms/pg_popyramids_dms.sql",
+         "docfile": "doc/dms/pg_popyramids_dms.md",
+         "version": "0.0.1"
+      },
+      "pg_popyramids_setup": {
+         "abstract": "Triggers, indexes and other features affecting a full popyramids database.",
+         "file": "sql/setup/pg_popyramids_setup.sql",
+         "docfile": "doc/setup/pg_popyramids_setup.md",
+         "version": "0.0.1"
+      }
+   },
+   "resources": {
+      "homepage": "http://www.chichinabo.org/",
+      "bugtracker": {
+         "web": "https://github.com/benizar/pg_popyramids/issues"
+      },
+      "repository": {
+        "url":  "git://github.com/chichinabo/pg_popyramids.git",
+        "web":  "https://github.com/chichinabo/pg_popyramids",
+        "type": "git"
+      }
+   },
+   "generated_by": "Benito M. Zaragozí",
+   "meta-spec": {
+      "version": "1.0.0",
+      "url": "http://pgxn.org/meta/spec.txt"
+   },
+   "tags": [
+      "population pyramids",
+      "charts",
+      "statistics",
+      "geojson"
+   ]
+}
