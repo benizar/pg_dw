@@ -1,29 +1,17 @@
 {
    "name": "pg_popyramids",
-   "abstract": "A PostgreSQL extensions for creating a popyramids database",
-   "description": "This library contains a set of PostgreSQL extensions, which creates a basic database structure for storing and analyzing population pyramids.",
+   "abstract": "A PostgreSQL extension for creating a popyramids database",
+   "description": "This library contains a PostgreSQL extension, which creates a basic database structure for storing and analyzing population pyramids.",
    "version": "0.0.1",
    "maintainer": [
       "Benito M. Zaragozí <benizar@gmail.com>"
    ],
    "license": "GPL3",
    "provides": {
-      "pg_popyramids_ods": {
-         "abstract": "A PostgreSQL extension for creating an Operational Data Store (ODS) schema in a popyramids database.",
-         "file": "sql/ods/pg_popyramids_ods.sql",
-         "docfile": "doc/ods/pg_popyramids_ods.md",
-         "version": "0.0.1"
-      },
-      "pg_popyramids_dms": {
-         "abstract": "A PostgreSQL extension for creating a data marts schema in a popyramids database.",
-         "file": "sql/dms/pg_popyramids_dms.sql",
-         "docfile": "doc/dms/pg_popyramids_dms.md",
-         "version": "0.0.1"
-      },
-      "pg_popyramids_setup": {
-         "abstract": "Triggers, indexes and other features affecting a full popyramids database.",
-         "file": "sql/setup/pg_popyramids_setup.sql",
-         "docfile": "doc/setup/pg_popyramids_setup.md",
+      "pg_popyramids": {
+         "abstract": "A PostgreSQL extension for creating a basic database structure for storing and analyzing population pyramids.",
+         "file": "pg_popyramids.sql",
+         "docfile": "doc/pg_popyramids_ods.md",
          "version": "0.0.1"
       }
    },

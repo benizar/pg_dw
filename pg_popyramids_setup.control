@@ -1,4 +1,0 @@
-comment = 'A PostgreSQL extension for automatize some behaviours in the popyramids database'
-default_version = '0.0.1'
-relocatable = false
-requires = 'postgis, pg_popyramids_ods, pg_popyramids_dms'

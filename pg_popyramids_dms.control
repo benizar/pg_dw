@@ -1,5 +1,0 @@
-comment = 'A PostgreSQL extension for creating a data marts schema in the popyramids database'
-default_version = '0.0.1'
-relocatable = false
-schema = dms
-requires = 'postgis, pg_popyramids_ods'

@@ -6,9 +6,10 @@ regression.diffs
 regression.out
 /sql/range_partitioning--*
 !/sql/range_partitioning--*--*.sql
-
 *~
+
+# History files
 .Rhistory
-/sql/ods/pg_popyramids_ods--*.sql
-/sql/dms/pg_popyramids_dms--*.sql
-/sql/setup/pg_popyramids_setup--*.sql
+.Rapp.history
+
+pg_popyramids--*.sql
