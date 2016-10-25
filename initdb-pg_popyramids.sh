@@ -14,11 +14,8 @@ EOSQL
 for DB in popyramids_db "$POSTGRES_DB"; do
 	echo "Loading extensions into $DB"
 	"${psql[@]}" --dbname="$DB" <<-'EOSQL'
-		CREATE EXTENSION postgis;
+		CREATE EXTENSION IF NOT EXISTS postgis;
+		CREATE EXTENSION IF NOT EXISTS postgis_topology;
 		CREATE EXTENSION pg_popyramids;
 EOSQL
-
-
-
-
 done
