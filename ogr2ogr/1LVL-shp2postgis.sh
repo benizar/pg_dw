@@ -21,7 +21,7 @@ read -p "1.- Main folder to import (e.g. /path/to/shps): " -i "$PWD" -e FOLDER
 defprefix=$(basename "$FOLDER")_
 read -p "2.- Table prefix (e.g. dataset year as '2006'; try to avoid this): " -i "$defprefix" -e PREFIX
 
-defepsg=4258
+defepsg=4326
 read -p "3.- EPSG (e.g. 4326, 4258, etc): " -i $defepsg -e EPSG
 
 ## bcn500 contiene capas codificadas con WIN1252 y algunas con UTF8
@@ -34,10 +34,10 @@ export PGCLIENTENCODING
 defhost=localhost
 read -p "5.- Host: " -i $defhost -e HOST
 
-defdbname=yourdbname
+defdbname=popyramids_db
 read -p "6.- Database name (e.g. cnig, icv, coput, etc): " -i $defdbname -e DBNAME
 
-defschemas=public
+defschemas=stage
 read -p "7.- Schemas list (e.g schema1, schema2, schema-n): " -i $defschemas -e SCHEMAS
 
 defuser=postgres
@@ -45,6 +45,10 @@ read -p "8.- Postgres user: " -i $defuser -e USER
 
 defpassword=postgres
 read -p "9.- Postgres password: " -i $defpassword -e PASSWORD
+
+defport=5433
+read -p "10.- Postgres port: " -i $defport -e PORT
+
 
 ## BODY
 echo -e "\n=================================="
@@ -62,9 +66,9 @@ do
 	echo "File $filecounter: $FILENAME"
 	echo "-----------------------------------"
 	
-	echo -e "ogr2ogr -nlt GEOMETRY -f "PostgreSQL" -a_srs "EPSG:$EPSG" PG:"host=$HOST user=$USER dbname=$DBNAME schemas=$SCHEMAS password=$PASSWORD" $FILE -nln "$NEWNAME""
+	echo -e "ogr2ogr -nlt GEOMETRY -f "PostgreSQL" -a_srs "EPSG:$EPSG" PG:"host=$HOST user=$USER dbname=$DBNAME schemas=$SCHEMAS password=$PASSWORD port=$PORT" $FILE -nln "$NEWNAME""
 
-	ogr2ogr -nlt GEOMETRY -f "PostgreSQL" -a_srs "EPSG:$EPSG" PG:"host=$HOST user=$USER dbname=$DBNAME schemas=$SCHEMAS password=$PASSWORD" $FILE -nln "$NEWNAME"
+	ogr2ogr -nlt GEOMETRY -f "PostgreSQL" -a_srs "EPSG:$EPSG" PG:"host=$HOST user=$USER dbname=$DBNAME schemas=$SCHEMAS password=$PASSWORD port=$PORT" $FILE -nln "$NEWNAME"
 
 	filecounter=$[$filecounter +1]
 	echo ""
