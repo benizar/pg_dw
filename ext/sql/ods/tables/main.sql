@@ -1,3 +1,4 @@
+
 /*
 * who_uploaded: Name or nick name of the person who uploaded the data.
 * what_project: Full name of the census project.
@@ -17,20 +18,21 @@
 
 CREATE TABLE ods.main
 (
+  pid serial NOT NULL,
   who_uploaded text NOT NULL,
   what_project text NOT NULL,
+  what_project_short text NOT NULL,
   what_data ods.pyrint[] NOT NULL,
+  what_variables ods.pyrvars[] NOT NULL,
   where_geoname text NOT NULL,
   where_boundary geometry NOT NULL,
+  where_centroid geometry NOT NULL,
   when_reference date NOT NULL,
   when_accessed timestamp with time zone NOT NULL,
   whose_provider text NOT NULL,
-  whose_url text NOT NULL,
-  pid serial NOT NULL,
-  what_variables ods.pyrvars[] NOT NULL,
-  what_project_short text NOT NULL,
   whose_provider_short text NOT NULL,
-  where_centroid geometry NOT NULL,
+  whose_url text NOT NULL,
+
   CONSTRAINT main_pkey PRIMARY KEY (pid)
 )
 WITH (

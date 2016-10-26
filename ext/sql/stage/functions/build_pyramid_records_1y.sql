@@ -1,20 +1,22 @@
+
 /*SELECT * 
-FROM stage.build_pyramid_record('censo_ccaa_2001_join',
+FROM stage.build_pyramid_records_1y('censo_ccaa_1991_join',
 				'wkb_geometry',
 				'where_geon',
 				'Andrea Rosado', 
-				'Censo de Población y Viviendas 2001. Resultados por Comunidades Autónomas',
-				'2001-11-1',
+				'Censo de Población y Viviendas 1991. Resultados por Comunidades Autónomas',
+				'1991-11-1',
 				'Instituto Nacional de Estadística', 
 				'http://www.ine.es/', 
 				'INE (Spain)', 
-				'censo_ccaa_2001');*/
+				'censo_ccaa_1991');*/
 
 
 -- TODO:check number columns
 -- TODO:check that population column names are following the predefined pattern (e.g. xx??, xy??)
 -- TODO: replace ranges CTE by a loop
-CREATE OR REPLACE FUNCTION stage.build_pyramid_record(table_name text, col_geom text, col_geoname text, who text, project text, when_ref text, provider text, url text, project_short text, provider_short text) 
+
+CREATE OR REPLACE FUNCTION stage.build_pyramid_records_1y(table_name text, col_geom text, col_geoname text, who text, project text, when_ref text, provider text, url text, project_short text, provider_short text) 
 	RETURNS TABLE(
 	who_uploaded text,
 	what_project text,
@@ -298,3 +300,4 @@ SELECT * FROM final; ';
 END
 $func$
 LANGUAGE plpgsql;
+

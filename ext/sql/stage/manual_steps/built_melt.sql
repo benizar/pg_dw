@@ -1,4 +1,4 @@
---USAGE: SELECT * FROM stage.build_melt('censo_muni_2001_join','wkb_geometry','where_geon');
+--USAGE: SELECT * FROM stage.build_melt('censo_ccaa_1991_join','wkb_geometry','where_geon');
 
 /*
 * This function builds...

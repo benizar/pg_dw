@@ -1,4 +1,4 @@
---USAGE: SELECT * FROM stage.build_ranges('censo_muni_2001_join');
+﻿--USAGE: SELECT * FROM stage.build_ranges('censo_ccaa_1991_join');
 
 /*
 * This function builds...
@@ -50,7 +50,7 @@ FOR i IN 0..(colnum-1)/2 LOOP
 	
 	ELSE
 		--If its the last iteration, range will end with "100".
-		ranges_query:=concat(ranges_query,E'int4range( '||j::text||','||''::text||',''[)'') AS r_'||j::text );
+		ranges_query:=concat(ranges_query,E'int4range( '||j::text||','||'null'::text||',''[)'') AS r_'||j::text );
 	END IF;
 
     
@@ -60,7 +60,7 @@ END LOOP;
 
 
 --Close range query
-ranges_query:=ranges_query||' FROM stage.'||table_name||';';
+ranges_query:=ranges_query||' FROM stage.'||table_name;
 
 
 

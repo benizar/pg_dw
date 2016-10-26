@@ -11,8 +11,11 @@ DOCS = $(wildcard doc/*.md)
 all: $(EXTENSION)--$(EXTVERSION).sql
 
 $(EXTENSION)--$(EXTVERSION).sql: sql/schemas.sql \
+\
 sql/ods/types/*.sql \
 sql/ods/tables/*.sql \
+\
+sql/stage/functions/*.sql \
 \
 sql/dms/types/*.sql \
 sql/dms/functions/*.sql \
