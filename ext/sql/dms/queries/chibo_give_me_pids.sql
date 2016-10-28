@@ -1,6 +1,6 @@
 
 /*
- *  Add comments
+ * SELECT dms.chibo_give_me_pids('INE (Spain)', 'padron_2011_ccaa', 40, 5, 30, -5, DATE '2000-01-01', DATE '2015-01-01', 5)
  */
 CREATE OR REPLACE FUNCTION dms.chibo_give_me_pids(provider_short text, project_short text, north numeric, east numeric, south numeric, west numeric, date_from date, date_to date, maxpids integer)
   RETURNS integer[] AS

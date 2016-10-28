@@ -19,7 +19,7 @@ FROM stage.build_pyramid_records('censo_1991_ccaa',
 -- TODO:check that population column names are following the predefined pattern (e.g. xx??, xy??)
 -- TODO: replace ranges CTE by a loop
 
-CREATE OR REPLACE FUNCTION stage.build_pyramid_records(table_name text, table_name_id text, spatial_table_name text, spatial_table_name_id text, col_geom text, col_geoname text, who text, project text, when_ref text, provider text, url text, project_short text, provider_short text) 
+CREATE OR REPLACE FUNCTION stage.build_pyramid_records(table_name text, table_name_id text, spatial_table_name text, spatial_table_name_id text, col_geom text, col_geoname text, who text, project text, when_ref text, provider text, url text, provider_short text, project_short text) 
 	RETURNS TABLE(
 	who_uploaded text,
 	what_project text,

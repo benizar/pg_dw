@@ -2,7 +2,7 @@
 /*
  *  Add comments
  */
-CREATE OR REPLACE FUNCTION dms.chibo_give_me_pyramids(pids integer[], age_groups dms.pyrages, percentages boolean)
+/*CREATE OR REPLACE FUNCTION dms.chibo_give_me_pyramids(pids integer[], age_groups dms.pyrages, percentages boolean)
   RETURNS text AS
 $BODY$
 DECLARE
@@ -56,3 +56,5 @@ END IF;
 END;
 $BODY$
   LANGUAGE plpgsql VOLATILE;
+
+ */

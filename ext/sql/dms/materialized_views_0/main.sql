@@ -22,6 +22,16 @@ CREATE MATERIALIZED VIEW dms.main AS
     dms.pyrintarray_total_pop(dms.pyrintarray_from_ods(what_data)) AS what_total_pop,
     dms.pyrint_shape(dms.pyrint_from_ods(what_data[1])) AS what_shape,
 
+    dms.pyrintarray_bucketing(dms.pyrintarray_from_ods(what_data), '5 years'::dms.pyrages) AS what_data_5,
+    dms.pyrintarray_bucketing(dms.pyrintarray_from_ods(what_data), '10 years'::dms.pyrages) AS what_data_10,
+    dms.pyrintarray_bucketing(dms.pyrintarray_from_ods(what_data), 'Big groups'::dms.pyrages) AS what_data_big,
+
+
+    dms.pyrintarray_percentages(dms.pyrintarray_from_ods(what_data)) AS what_percentages,
+    dms.pyrintarray_percentages(dms.pyrintarray_bucketing(dms.pyrintarray_from_ods(what_data), '5 years'::dms.pyrages)) AS what_percentages_5,
+    dms.pyrintarray_percentages(dms.pyrintarray_bucketing(dms.pyrintarray_from_ods(what_data), '10 years'::dms.pyrages)) AS what_percentages_10,
+    dms.pyrintarray_percentages(dms.pyrintarray_bucketing(dms.pyrintarray_from_ods(what_data), 'Big groups'::dms.pyrages)) AS what_percentages_big,
+
 --STYLES
     ('<font size=1>'
     '<table>'
