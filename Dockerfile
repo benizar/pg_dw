@@ -1,4 +1,4 @@
-FROM mdillon/postgis
+FROM mdillon/postgis:9.6
 MAINTAINER Benito Zaragozí <benizar@gmail.com>
 
 # pg_popyramids install
