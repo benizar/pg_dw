@@ -20,9 +20,10 @@ sql/stage/functions/*.sql \
 sql/dms/types/*.sql \
 sql/dms/functions/*.sql \
 \
-sql/dms/materialized_views_0/*.sql \
-sql/dms/materialized_views_1/*.sql \
-sql/dms/queries/*.sql\
+sql/dms/apps/face_to_face/materialized_views/*.sql \
+sql/dms/apps/give_me_five/materialized_views/*.sql \
+sql/dms/apps/map_catalog/materialized_views/*.sql \
+sql/dms/apps/one_by_one/materialized_views/*.sql \
 \
 sql/setup/triggers/*.sql \
 sql/setup/indexes/*.sql
