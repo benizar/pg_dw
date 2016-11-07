@@ -23,10 +23,10 @@ COPY ./initdb-pg_popyramids.sh /docker-entrypoint-initdb.d/pg_popyramids.sh
 
 
 # add backup scripts
-ADD /backup/backup.sh /usr/local/bin/backup  
-ADD /backup/restore.sh /usr/local/bin/restore  
-ADD /backup/list-backups.sh /usr/local/bin/list-backups  
-ADD /backup/shell.sh /usr/local/bin/shell
+ADD /dbutils/backup.sh /usr/local/bin/backup  
+ADD /dbutils/restore.sh /usr/local/bin/restore  
+ADD /dbutils/list-backups.sh /usr/local/bin/list-backups  
+ADD /dbutils/shell.sh /usr/local/bin/shell
 
 # make them executable
 RUN chmod +x /usr/local/bin/restore  
