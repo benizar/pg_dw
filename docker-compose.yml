@@ -68,7 +68,7 @@ volumes:
 # [ networks definition ]
 #
 networks:  
-  frontend:
-    driver: bridge
+#  frontend:
+#    driver: bridge
   backend:
     driver: bridge
