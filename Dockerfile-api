@@ -1,0 +1,36 @@
+FROM ubuntu:14.04
+MAINTAINER Benito Zaragozi <benizar@gmail.com>
+
+ENV POSTGREST_VERSION 0.3.0.1
+ENV POSTGREST_DBHOST host
+ENV POSTGREST_DBNAME database
+ENV POSTGREST_DBPORT 5432
+ENV POSTGREST_DBUSER user
+ENV POSTGREST_DBPASS password
+ENV POSTGREST_DBPOOL 200
+ENV POSTGREST_PORT 3000
+ENV POSTGREST_SCHEMA public
+ENV POSTGREST_ANOUSER postgres
+ENV POSTGREST_JWT_SECRET secret
+ENV POSTGREST_MAX_ROWS 1000000
+
+
+RUN apt-get update
+RUN apt-get install -y tar xz-utils wget libpq-dev
+RUN apt-get update
+
+RUN wget http://github.com/begriffs/postgrest/releases/download/v${POSTGREST_VERSION}/postgrest-${POSTGREST_VERSION}-ubuntu.tar.xz
+RUN tar --xz -xvf postgrest-${POSTGREST_VERSION}-ubuntu.tar.xz
+RUN mv postgrest /usr/local/bin/postgrest
+
+CMD postgrest postgres://${POSTGREST_DBUSER}:${POSTGREST_DBPASS}@${POSTGREST_DBHOST}:${POSTGREST_DBPORT}/${POSTGREST_DBNAME} \
+              --pool ${POSTGREST_DBPOOL} \
+              --port ${POSTGREST_PORT} \
+              --anonymous ${POSTGREST_ANOUSER} \
+              --schema ${POSTGREST_SCHEMA} \
+              --jwt-secret ${POSTGREST_JWT_SECRET} \
+              --max-rows ${POSTGREST_MAX_ROWS}
+
+EXPOSE 3000
+
+RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
