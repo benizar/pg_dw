@@ -29,7 +29,7 @@ services:
       POSTGREST_PORT: 3000
       POSTGREST_SCHEMA: dms
       POSTGREST_ANOUSER: postgres
-      POSTGREST_JWT_SECRET: secret
+      POSTGREST_JWT_SECRET: notasecret
       POSTGREST_MAX_ROWS: 1000000
     networks:
       - backend
@@ -49,7 +49,7 @@ services:
       - postgres_backups:/backups
     environment:
       POSTGRES_PASSWORD: postgres
-      POSTGRES_USER: postgres
+      POSTGRES_USER: postgrest
     networks:
       - backend
 
