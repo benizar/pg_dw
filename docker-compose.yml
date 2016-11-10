@@ -8,6 +8,7 @@ services:
   #
   api:
     restart: always
+    # comment on build if want to use the dockerhub build
     build:
       context: .
       dockerfile: Dockerfile-api
@@ -23,12 +24,12 @@ services:
       POSTGREST_DBHOST: db
       POSTGREST_DBNAME: popyramids_db
       POSTGREST_DBPORT: 5432
-      POSTGREST_DBUSER: postgres
-      POSTGREST_DBPASS: postgres
+      POSTGREST_DBUSER: chichinabo
+      POSTGREST_DBPASS: chichinabo
       POSTGREST_DBPOOL: 200
       POSTGREST_PORT: 3000
       POSTGREST_SCHEMA: dms
-      POSTGREST_ANOUSER: postgres
+      POSTGREST_ANOUSER: apis
       POSTGREST_JWT_SECRET: notasecret
       POSTGREST_MAX_ROWS: 1000000
     networks:
@@ -36,6 +37,7 @@ services:
 
   db:
     restart: always
+    # comment on build if want to use the dockerhub build
     build:
       context: .
       dockerfile: Dockerfile-db
@@ -48,8 +50,8 @@ services:
       - postgres_data:/var/lib/postgresql/data
       - postgres_backups:/backups
     environment:
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_USER: postgrest
+      POSTGRES_PASSWORD: chichinabo
+      POSTGRES_USER: chichinabo
     networks:
       - backend
 
