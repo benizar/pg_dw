@@ -32,8 +32,7 @@ CREATE OR REPLACE FUNCTION stage.build_pyramid_records(table_name text, table_na
 	whose_url text,
 	what_variables ods.pyrvars[],
 	what_project_short text,
-	whose_provider_short text,
-	where_centroid geometry
+	whose_provider_short text
     )
    AS
 $func$
@@ -266,7 +265,6 @@ SELECT
 ' ||quote_literal(project) ||'::text AS what_project,
 where_geoname::text,
 where_boundary,
-ST_centroid(where_boundary) AS where_centroid,
 ' ||quote_literal(when_ref) || '::date  AS when_reference,
 now() AS when_accessed,
 ' ||quote_literal(provider) || '::text AS whose_provider,
@@ -292,8 +290,7 @@ SELECT
   whose_url,
   ARRAY['||quote_literal('Population')||'::ods.pyrvars] AS what_variables, --TODO: Define as function parameter
   what_project_short,
-  whose_provider_short,
-  where_centroid
+  whose_provider_short
   
   FROM metadata
       

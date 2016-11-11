@@ -13,14 +13,14 @@ WITH ods AS (
 			what_variables,
 			dms.pyrintarray_from_ods(what_data) AS what_data, --CAST DATA TO THIS SCHEMA
 			where_geoname,
-			where_centroid,
+			ST_centroid(where_boundary) AS where_centroid,
 			ST_SimplifyPreserveTopology(where_boundary,0.001) AS where_boundary,
 			when_reference,
 			whose_url
 		FROM ods.main
 		WHERE whose_provider_short = 'INE (Spain)'
 
-	),  calculations AS (
+	), calculations AS (
 		SELECT *,
 			dms.pyrintarray_total_pop(what_data) AS what_total_pop,
 			dms.pyrint_shape(what_data[1]) AS what_shape,
@@ -35,6 +35,10 @@ WITH ods AS (
 			dms.pyrintarray_percentages(dms.pyrintarray_bucketing(what_data, 'Big groups'::dms.pyrages)) AS what_percentages_big
 		
 		FROM ods
+
+	), ordering AS (
+		SELECT * FROM calculations ORDER BY what_total_pop DESC
+
 
 	), styled AS ( 
 		SELECT *,
@@ -65,12 +69,12 @@ WITH ods AS (
 			||'",'
 			'"weight":1,'
 			'"color":"black"}'::text AS how_boundary_style
-		FROM calculations
+		FROM ordering
 	), docstore AS (
 		SELECT lg.pid, lg.where_boundary,lg.where_centroid,
 			json_build_object(
 				'type', 'Feature',
-				'geometry', st_asgeojson(st_collect(ARRAY[lg.where_boundary, lg.where_centroid]), 4)::json,
+				'geometry', st_asgeojson(st_collect(ARRAY[lg.where_centroid]), 4)::json,
 				'style', lg.how_boundary_style::json,
 				'properties', json_build_object(
 					'pid', lg.pid,

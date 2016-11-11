@@ -26,7 +26,6 @@ CREATE TABLE ods.main
   what_variables ods.pyrvars[] NOT NULL,
   where_geoname text NOT NULL,
   where_boundary geometry NOT NULL,
-  where_centroid geometry NOT NULL,
   when_reference date NOT NULL,
   when_accessed timestamp with time zone NOT NULL,
   whose_provider text NOT NULL,
