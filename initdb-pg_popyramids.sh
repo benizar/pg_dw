@@ -21,6 +21,7 @@ for DB in popyramids_db "$POSTGRES_DB"; do
 	echo "Loading extensions into $DB"
 	"${psql[@]}" --dbname="$DB" <<-'EOSQL'
 		CREATE EXTENSION IF NOT EXISTS postgis;
+		CREATE EXTENSION geohash_extra;
 		CREATE EXTENSION pg_popyramids;
 EOSQL
 done

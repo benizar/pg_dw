@@ -13,7 +13,8 @@ WITH ods AS (
 			what_variables,
 			dms.pyrintarray_from_ods(what_data) AS what_data, --CAST DATA TO THIS SCHEMA
 			where_geoname,
-			ST_centroid(where_boundary) AS where_centroid,
+			where_point,
+			ST_GeoHash(where_point, 8) AS where_geohash,
 			when_reference,
 			whose_provider,
 			whose_provider_short,
@@ -55,14 +56,22 @@ WITH ods AS (
 
 		FROM ordering
 	), docstore AS (
-		SELECT lg.pid,lg.where_centroid,
+		SELECT lg.pid,
+			lg.what_project_short,
+			lg.what_total_pop,
+			lg.what_shape,
+			lg.where_geoname,
+			lg.where_geohash,
+			lg.when_reference,
+			lg.whose_provider_short,
+
 			json_build_object(
 				'type', 'Feature',
-				'geometry', st_asgeojson(st_collect(ARRAY[lg.where_centroid]), 4)::json,
+				'geometry', st_asgeojson(st_collect(ARRAY[lg.where_point]), 4)::json,
 				'properties', json_build_object(
 					'pid', lg.pid,
 					'what_project', lg.what_project,
-					'what_project_short', lg.what_project,
+					'what_project_short', lg.what_project_short,
 					'what_variables', lg.what_variables,
 					'what_data', lg.what_data,
 					'what_data_5', lg.what_data_5,
@@ -75,13 +84,14 @@ WITH ods AS (
 					'what_total_pop', lg.what_total_pop,
 					'what_shape', lg.what_shape,
 					'where_geoname', lg.where_geoname,
+					'where_geohash', lg.where_geohash,
 					'when_reference', lg.when_reference,
 					'whose_provider', lg.whose_provider,
 					'whose_provider_short', lg.whose_provider_short,
 					'whose_url', lg.whose_url,
 					'how_popup_html_long', lg.how_popup
 					)
-			)::jsonb AS payload
+			)::jsonb AS pyramid
 		FROM styled lg
 	)
 

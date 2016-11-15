@@ -5,7 +5,7 @@
 * what_data: Data describing a population pyramid. It is an array of pyrint objects (e.g. population by age, sex and nationality would have one pyrint object for each nationality considered).
 * where_geoname: A place name associated to the pyramid.
 * where_boundary: A polygon describing the area represented in the pyramid.
-* where_centroid: The where_boundary's centroid for mapping purposes.
+* where_point: The where_boundary's point in polygon for mapping purposes (and geohashing).
 * when_reference: Reference date for the census project.
 * when_accessed: When data was downloaded from a public repository.
 * whose_provider: Full name of the organization that collected the census data.
@@ -26,6 +26,7 @@ CREATE TABLE ods.main
   what_variables ods.pyrvars[] NOT NULL,
   where_geoname text NOT NULL,
   where_boundary geometry NOT NULL,
+  where_point geometry NOT NULL,
   when_reference date NOT NULL,
   when_accessed timestamp with time zone NOT NULL,
   whose_provider text NOT NULL,

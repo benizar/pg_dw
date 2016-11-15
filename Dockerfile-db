@@ -14,6 +14,15 @@ RUN cd pg_popyramids &&\
 	cd .. &&\
 	rm -Rf pg_popyramids
 
+# copy and compile geohash-extra
+COPY /geohash-extra/ /geohash-extra/
+
+RUN cd geohash-extra &&\
+	make &&\
+	make install &&\
+	cd .. &&\
+	rm -Rf geohash-extra
+
 # clean packages
 #RUN apt-get remove -y build-essential checkinstall postgresql-server-dev-9.6
 
