@@ -8,91 +8,76 @@ CREATE MATERIALIZED VIEW dms.map_catalog AS
 
 WITH ods AS (
 		SELECT pid,
-			what_project,
-			what_project_short,
-			what_variables,
-			dms.pyrintarray_from_ods(what_data) AS what_data, --CAST DATA TO THIS SCHEMA
-			where_geoname,
-			where_point,
-			ST_GeoHash(where_point, 8) AS where_geohash,
-			when_reference,
-			whose_provider,
-			whose_provider_short,
-			whose_url
+			project,
+			project_id,
+			pyrvariables,
+			dms.pyrintarray_from_ods(pyrdata) AS pyrdata, --CAST DATA TO THIS SCHEMA
+			geoname,
+			labelpoint,
+			ST_GeoHash(labelpoint, 8) AS geohash,
+			refdate,
+			provider,
+			provider_id,
+			url
 		FROM ods.main
 
 	), calculations AS (
 		SELECT *,
-			dms.pyrintarray_total_pop(what_data) AS what_total_pop,
-			dms.pyrint_shape(what_data[1]) AS what_shape,
+			dms.pyrintarray_total_pop(pyrdata) AS totalpop,
+			dms.pyrint_shape(pyrdata[1]) AS shape,
 
-			dms.pyrintarray_bucketing(what_data, '5 years'::dms.pyrages) AS what_data_5,
-			dms.pyrintarray_bucketing(what_data, '10 years'::dms.pyrages) AS what_data_10,
-			dms.pyrintarray_bucketing(what_data, 'Big groups'::dms.pyrages) AS what_data_big,
+			--dms.pyrintarray_bucketing(pyrdata, '5 years'::dms.pyrages) AS pyrdata_5,
+			--dms.pyrintarray_bucketing(pyrdata, '10 years'::dms.pyrages) AS pyrdata_10,
+			--dms.pyrintarray_bucketing(pyrdata, 'Big groups'::dms.pyrages) AS pyrdata_big,
 
-			dms.pyrintarray_percentages(what_data) AS what_percentages,
-			dms.pyrintarray_percentages(dms.pyrintarray_bucketing(what_data, '5 years'::dms.pyrages)) AS what_percentages_5,
-			dms.pyrintarray_percentages(dms.pyrintarray_bucketing(what_data, '10 years'::dms.pyrages)) AS what_percentages_10,
-			dms.pyrintarray_percentages(dms.pyrintarray_bucketing(what_data, 'Big groups'::dms.pyrages)) AS what_percentages_big
+			--dms.pyrintarray_percentages(pyrdata) AS pyrcent,
+			dms.pyrintarray_percentages(dms.pyrintarray_bucketing(pyrdata, '5 years'::dms.pyrages)) AS pyrcent_5,
+			dms.pyrintarray_percentages(dms.pyrintarray_bucketing(pyrdata, '10 years'::dms.pyrages)) AS pyrcent_10
+			--dms.pyrintarray_percentages(dms.pyrintarray_bucketing(pyrdata, 'Big groups'::dms.pyrages)) AS pyrcent_big
 		
 		FROM ods
 
 	), ordering AS (
-		SELECT * FROM calculations ORDER BY what_total_pop DESC
+		SELECT * FROM calculations ORDER BY totalpop DESC
 
 
-	), styled AS ( 
-		-- Html popups only. The map catalog app represents pyramids as map icons.
-		SELECT *,
-			('<font size=1>'
-			'<table>'
-			'<tr bgcolor="#CED8F6"><td><b>pid: </b></td><td>'||pid||'</td></tr>'
-			'<tr bgcolor="#FFFFFF"><td><b>where_geoname: </b></td><td>'||where_geoname||'</td></tr>'
-			'<tr bgcolor="#CED8F6"><td><b>when_reference: </b></td><td>'||when_reference||'</td></tr>'
-			'<tr bgcolor="#FFFFFF"><td><b>what_project: </b></td><td>'||what_project||'</td></tr>'
-			'<tr bgcolor="#FFFFFF"><td><b>whose_url: </b></td><td>'||whose_url||'</td></tr>'
-			'</table>'
-			'</font>'::text) AS how_popup
-
-		FROM ordering
 	), docstore AS (
 		SELECT lg.pid,
-			lg.what_project_short,
-			lg.what_total_pop,
-			lg.what_shape,
-			lg.where_geoname,
-			lg.where_geohash,
-			lg.when_reference,
-			lg.whose_provider_short,
+			lg.project_id,
+			lg.totalpop,
+			lg.shape,
+			lg.geoname,
+			lg.geohash,
+			lg.refdate,
+			lg.provider_id,
 
 			json_build_object(
 				'type', 'Feature',
-				'geometry', st_asgeojson(st_collect(ARRAY[lg.where_point]), 4)::json,
+				'geometry', st_asgeojson(st_collect(ARRAY[lg.labelpoint]), 4)::json,
 				'properties', json_build_object(
 					'pid', lg.pid,
-					'what_project', lg.what_project,
-					'what_project_short', lg.what_project_short,
-					'what_variables', lg.what_variables,
-					'what_data', lg.what_data,
-					'what_data_5', lg.what_data_5,
-					'what_data_10', lg.what_data_10,
-					'what_data_big', lg.what_data_big,
-					'what_percentages', lg.what_percentages,
-					'what_percentages_5', lg.what_percentages_5,
-					'what_percentages_10', lg.what_percentages_10,
-					'what_percentages_big', lg.what_percentages_big,
-					'what_total_pop', lg.what_total_pop,
-					'what_shape', lg.what_shape,
-					'where_geoname', lg.where_geoname,
-					'where_geohash', lg.where_geohash,
-					'when_reference', lg.when_reference,
-					'whose_provider', lg.whose_provider,
-					'whose_provider_short', lg.whose_provider_short,
-					'whose_url', lg.whose_url,
-					'how_popup_html_long', lg.how_popup
+					'project', lg.project,
+					'project_id', lg.project_id,
+					'pyrvariables', lg.pyrvariables,
+					--'pyrdata', lg.pyrdata,
+					--'pyrdata_5', lg.pyrdata_5,
+					--'pyrdata_10', lg.pyrdata_10,
+					--'pyrdata_big', lg.pyrdata_big,
+					--'pyrcent', lg.pyrcent,
+					'pyrcent_5', lg.pyrcent_5,
+					'pyrcent_10', lg.pyrcent_10,
+					--'pyrcent_big', lg.pyrcent_big,
+					'totalpop', lg.totalpop,
+					'shape', lg.shape,
+					'geoname', lg.geoname,
+					'geohash', lg.geohash,
+					'refdate', lg.refdate,
+					'provider', lg.provider,
+					'provider_id', lg.provider_id,
+					'url', lg.url
 					)
 			)::jsonb AS pyramid
-		FROM styled lg
+		FROM ordering lg
 	)
 
 SELECT * FROM docstore
