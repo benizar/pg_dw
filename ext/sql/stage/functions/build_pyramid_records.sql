@@ -6,34 +6,21 @@ FROM stage.build_pyramid_records('censo_1991_ccaa',
 				'codine',
 				'wkb_geometry',
 				'geoname',
-				'Benito Zaragozí', 
-				'Censo de Población y Viviendas 1991. Resultados por Comunidades Autónomas',
-				'1991-11-1',
-				'Instituto Nacional de Estadística', 
-				'http://www.ine.es/', 
-				'INE (Spain)', 
-				'censo_1991_ccaa');*/
+				1);*/
 
 
 -- TODO:check number columns
 -- TODO:check that population column names are following the predefined pattern (e.g. xx??, xy??)
 -- TODO: replace ranges CTE by a loop
 
-CREATE OR REPLACE FUNCTION stage.build_pyramid_records(table_name text, table_name_id text, spatial_table_name text, spatial_table_name_id text, col_geom text, col_geoname text, who_uploaded text, what_project text, when_reference text, whose_provider text, whose_url text, whose_provider_id text, what_project_id text) 
+CREATE OR REPLACE FUNCTION stage.build_pyramid_records(table_name text, table_name_id text, spatial_table_name text, spatial_table_name_id text, col_geom text, col_geoname text, what_project_id integer) 
 	RETURNS TABLE(
-	backer text,
-	project text,
 	pyrdata ods.pyrint[],
+	pyrvariables ods.pyrvars[],
 	geoname text,
 	boundary geometry,
 	labelpoint geometry,
-	refdate date,
-	loadate timestamp with time zone,
-	provider text,
-	url text,
-	pyrvariables ods.pyrvars[],
-	project_id text,
-	provider_id text
+	project_id integer
     )
    AS
 $func$
@@ -262,16 +249,9 @@ GROUP BY geoname, boundary
      ), metadata AS (
        
 SELECT
-' ||quote_literal(who_uploaded) ||'::text AS backer,
-' ||quote_literal(what_project) ||'::text AS project,
 geoname::text,
 boundary,
-' ||quote_literal(when_reference) || '::date  AS refdate,
-now() AS loadate,
-' ||quote_literal(whose_provider) || '::text AS provider,
-' ||quote_literal(whose_url) || '::text AS url,
 ' ||quote_literal(what_project_id) || '::text AS project_id,
-' ||quote_literal(whose_provider_id) || '::text AS provider_id,
 xy AS data_xy,
 xx AS data_xx,
 age AS data_age
@@ -280,19 +260,12 @@ FROM agg
      ), final AS (
       
 SELECT 
-  backer,
-  project,
   ARRAY[(data_age,data_xy,data_xx)::ods.pyrint] AS pyrdata,
+  ARRAY['||quote_literal('Population')||'::ods.pyrvars] AS pyrvariables, --TODO: Define as function parameter
   geoname,
   boundary,
   ST_PointOnSurface(boundary) AS labelpoint,
-  refdate,
-  loadate,
-  provider,
-  url,
-  ARRAY['||quote_literal('Population')||'::ods.pyrvars] AS pyrvariables, --TODO: Define as function parameter
-  project_id,
-  provider_id
+  '||what_project_id||' AS project_id
   
   FROM metadata
       

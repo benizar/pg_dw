@@ -1,5 +1,7 @@
 #
 # Makefile for pg_popyramids
+# \
+# sql/dms/materialized_views/*.sql
 # 
 
 EXTENSION = pg_popyramids
@@ -18,15 +20,13 @@ $(EXTENSION)--$(EXTVERSION).sql: sql/schemas.sql \
 \
 sql/ods/types/*.sql \
 sql/ods/tables/*.sql \
+sql/ods/views/*.sql \
+sql/ods/triggers/*.sql \
 \
 sql/stage/functions/*.sql \
 \
 sql/dms/types/*.sql \
-sql/dms/functions/*.sql \
-sql/dms/materialized_views/*.sql \
-\
-sql/setup/triggers/*.sql \
-sql/setup/indexes/*.sql
+sql/dms/functions/*.sql
 
 	cat $^ > $@
 
