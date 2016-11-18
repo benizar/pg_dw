@@ -22,6 +22,6 @@ for DB in popyramids_db "$POSTGRES_DB"; do
 	"${psql[@]}" --dbname="$DB" <<-'EOSQL'
 		CREATE EXTENSION IF NOT EXISTS postgis;
 		CREATE EXTENSION geohash_extra;
-		CREATE EXTENSION pg_popyramids;
+		CREATE EXTENSION pg_chichinabo;
 EOSQL
 done

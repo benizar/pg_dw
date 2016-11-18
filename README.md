@@ -1,18 +1,23 @@
-# pg_popyramids
-A PostgreSQL extension for creating a popyramids database.
+# pg_chichinabo
+A PostgreSQL extension for creating a chichinabo database.
 
-Dockerfile
-------------
+## Docker Compose
+docker-compose build
+docker-compose up
+docker-compose down
+
+## Dockerfiles
 Instructions for installation and deployment are detailed in the Dockerfile. A ready to run version is available at Docker Hub. Just run it as:
 
-    docker run -d -p 5433:5432 --name pg_popyramids -e POSTGRES_PASSWORD=postgres -d chichinabo/pg_popyramids
+    docker run -d -p 5433:5432 --name pg_chichinabo -e POSTGRES_PASSWORD=postgres -d chichinabo/pg_chichinabo
 
-Sample data
-------------
-You can upload some sample data from the sample_data folder. Just execute any of the backups containing insert commands. For example, 'ine_prov_2011.sql' will be faster for a first test.
+## Sample data
+Several tables have initial values for testing purposes...
 
-Future work
-------------
+You can upload some sample data from these repositories:
+
+
+## Future work
 * New functionalities:
   * Log usage statistics (e.g. user/usage maps and bounding box statistics).
 * Improve features:

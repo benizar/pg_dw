@@ -1,24 +1,22 @@
-/*
-* Main view used for inserting on multiple tables
-*/
 
+/*
+* Main view used for inserting on multiple tables or dms queries
+* when provider and backer already exist
+*/
 CREATE VIEW ods.main AS
 
-SELECT pyr.pyrdata AS pyr_data, 
-	pyr.pyrvariables AS pyr_variables, 
-	pyr.geoname AS pyr_geoname, 
-	pyr.boundary AS pyr_boundary, 
-	pyr.labelpoint AS pyr_labelpoint,
+SELECT dt.data_series AS dt_data, 
+	dt.data_vars AS dt_variables, 
+	dt.geoname AS dt_geoname, 
+	--dt.boundary AS dt_boundary, 
+	--dt.labelpoint AS dt_labelpoint,
 	proj.longname AS proj_longname, 
 	proj.shortname AS proj_shortname, 
-	proj.refdate AS proj_refdate, 
-	back.nickname AS backer_longname, 
-	back.firstname AS backer_firstname, 
-	back.lastname AS backer_lastname, 
-	prov.longname AS provider_longname, 
-	prov.shortname AS provider_shortname, 
-	prov.url  AS provider_url
+	proj.refdate AS proj_refdate,
+	proj.backer_id AS proj_backerid,  -- backer_id already known
+	proj.provider_id AS proj_providerid -- provider_id already known
 	
-FROM ods.pyramids pyr INNER JOIN ods.projects_list proj ON proj.id = pyr.projects_id
-INNER JOIN ods.backers_list back ON back.id = bakers_id
-INNER JOIN ods.providers_list prov ON prov.id = providers_id
+FROM ods.data_pool dt INNER JOIN ods.projects_list proj ON proj.id = dt.project_id;
+
+
+

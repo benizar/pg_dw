@@ -1,28 +1,28 @@
 {
-   "name": "pg_popyramids",
-   "abstract": "A PostgreSQL extension for creating a popyramids database",
-   "description": "This library contains a PostgreSQL extension, which creates a basic database structure for storing and analyzing population pyramids.",
+   "name": "pg_chichinabo",
+   "abstract": "A PostgreSQL extension for creating a chichinabo database",
+   "description": "This library contains a PostgreSQL extension, which creates a basic database structure for storing and analyzing chichinabo data.",
    "version": "0.0.1",
    "maintainer": [
       "Benito M. Zaragozí <benizar@gmail.com>"
    ],
    "license": "GPL3",
    "provides": {
-      "pg_popyramids": {
-         "abstract": "A PostgreSQL extension for creating a basic database structure for storing and analyzing population pyramids.",
-         "file": "pg_popyramids.sql",
-         "docfile": "doc/pg_popyramids_ods.md",
+      "pg_chichinabo": {
+         "abstract": "A PostgreSQL extension for creating a basic database structure for storing and analyzing chichinabo data.",
+         "file": "pg_chichinabo.sql",
+         "docfile": "doc/pg_chichinabo.md",
          "version": "0.0.1"
       }
    },
    "resources": {
       "homepage": "http://www.chichinabo.org/",
       "bugtracker": {
-         "web": "https://github.com/benizar/pg_popyramids/issues"
+         "web": "https://github.com/benizar/pg_chichinabo/issues"
       },
       "repository": {
-        "url":  "git://github.com/chichinabo/pg_popyramids.git",
-        "web":  "https://github.com/chichinabo/pg_popyramids",
+        "url":  "git://github.com/chichinabo/pg_chichinabo.git",
+        "web":  "https://github.com/chichinabo/pg_chichinabo",
         "type": "git"
       }
    },
@@ -32,7 +32,9 @@
       "url": "http://pgxn.org/meta/spec.txt"
    },
    "tags": [
-      "population pyramids",
+      "small data",
+      "big data",
+      "geospatial",
       "charts",
       "statistics",
       "geojson"

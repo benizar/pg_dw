@@ -5,22 +5,20 @@ FROM stage.build_pyramid_records('censo_1991_ccaa',
 				'ccaa',
 				'codine',
 				'wkb_geometry',
-				'geoname',
-				1);*/
+				'geoname');*/
 
 
 -- TODO:check number columns
 -- TODO:check that population column names are following the predefined pattern (e.g. xx??, xy??)
 -- TODO: replace ranges CTE by a loop
 
-CREATE OR REPLACE FUNCTION stage.build_pyramid_records(table_name text, table_name_id text, spatial_table_name text, spatial_table_name_id text, col_geom text, col_geoname text, what_project_id integer) 
+CREATE OR REPLACE FUNCTION stage.build_pyramid_records(table_name text, table_name_id text, spatial_table_name text, spatial_table_name_id text, col_geom text, col_geoname text) 
 	RETURNS TABLE(
 	pyrdata ods.pyrint[],
 	pyrvariables ods.pyrvars[],
 	geoname text,
 	boundary geometry,
-	labelpoint geometry,
-	project_id integer
+	labelpoint geometry
     )
    AS
 $func$
@@ -251,7 +249,6 @@ GROUP BY geoname, boundary
 SELECT
 geoname::text,
 boundary,
-' ||quote_literal(what_project_id) || '::text AS project_id,
 xy AS data_xy,
 xx AS data_xx,
 age AS data_age
@@ -264,8 +261,7 @@ SELECT
   ARRAY['||quote_literal('Population')||'::ods.pyrvars] AS pyrvariables, --TODO: Define as function parameter
   geoname,
   boundary,
-  ST_PointOnSurface(boundary) AS labelpoint,
-  '||what_project_id||' AS project_id
+  ST_PointOnSurface(boundary) AS labelpoint
   
   FROM metadata
       

@@ -1,10 +1,8 @@
 #
-# Makefile for pg_popyramids
-# \
-# sql/dms/materialized_views/*.sql
+# Makefile for pg_chichinabo
 # 
 
-EXTENSION = pg_popyramids
+EXTENSION = pg_chichinabo
 EXTVERSION = $(shell grep default_version $(EXTENSION).control | sed -e "s/default_version[[:space:]]*=[[:space:]]*'\([^']*\)'/\1/")
 
 PG_CONFIG = pg_config
@@ -16,16 +14,20 @@ DOCS = $(wildcard doc/*.md)
 
 all: $(EXTENSION)--$(EXTVERSION).sql
 
-$(EXTENSION)--$(EXTVERSION).sql: sql/schemas.sql \
-\
-sql/ods/types/*.sql \
-sql/ods/tables/*.sql \
-sql/ods/views/*.sql \
-sql/ods/triggers/*.sql \
+$(EXTENSION)--$(EXTVERSION).sql: sql/dw/schemas.sql \
+sql/dw/types/*.sql \
 \
 sql/stage/functions/*.sql \
 \
-sql/dms/types/*.sql \
+sql/ods/tables/backers_list.sql \
+sql/ods/tables/providers_list.sql \
+sql/ods/tables/projects_list.sql \
+sql/ods/tables/spatial_pool.sql \
+sql/ods/tables/data_pool.sql \
+\
+sql/ods/functions/*.sql \
+sql/ods/views/*.sql \
+\
 sql/dms/functions/*.sql
 
 	cat $^ > $@
