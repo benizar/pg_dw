@@ -1,6 +1,6 @@
 
 
-/*
+/******************************
 * providers_list
 */
 CREATE TABLE ods.providers_list (

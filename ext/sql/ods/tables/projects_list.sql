@@ -1,5 +1,6 @@
 
-/*
+
+/*******************************
 * projects_list
 */
 CREATE TABLE ods.projects_list (
@@ -13,6 +14,14 @@ CREATE TABLE ods.projects_list (
 	provider_id integer NOT NULL REFERENCES ods.providers_list
 );
 
--- INSERT INTO ods.projects_list (longname, shortname, loadate, refdate, bakers_id, providers_id) VALUES ('Estadística del Padrón Continuo a 1 de enero de 2015. Datos a nivel nacional, comunidad autónoma y provincia', 'padron_2015_ccaa', CURRENT_DATE, '2015-1-1', 1, 1);
+/*
+* data_projects_list
+*/
+CREATE TABLE ods.data_projects_list () inherits (projects_list);
+
+/*
+* spatial_projects_list
+*/
+CREATE TABLE ods.spatial_projects_list () inherits (projects_list);
 
 

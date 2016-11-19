@@ -1,8 +1,8 @@
 #
-# Makefile for pg_chichinabo
+# Makefile for pg_chibo
 # 
 
-EXTENSION = pg_chichinabo
+EXTENSION = pg_chibo
 EXTVERSION = $(shell grep default_version $(EXTENSION).control | sed -e "s/default_version[[:space:]]*=[[:space:]]*'\([^']*\)'/\1/")
 
 PG_CONFIG = pg_config
@@ -17,11 +17,11 @@ all: $(EXTENSION)--$(EXTVERSION).sql
 $(EXTENSION)--$(EXTVERSION).sql: sql/dw/schemas.sql \
 sql/dw/types/*.sql \
 \
-sql/stage/functions/*.sql \
-\
 sql/ods/tables/backers_list.sql \
 sql/ods/tables/providers_list.sql \
 sql/ods/tables/projects_list.sql \
+sql/ods/tables/data_projects_list.sql \
+sql/ods/tables/spatial_projects_list.sql \
 sql/ods/tables/spatial_pool.sql \
 sql/ods/tables/data_pool.sql \
 \

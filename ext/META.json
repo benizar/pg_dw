@@ -1,28 +1,28 @@
 {
-   "name": "pg_chichinabo",
-   "abstract": "A PostgreSQL extension for creating a chichinabo database",
-   "description": "This library contains a PostgreSQL extension, which creates a basic database structure for storing and analyzing chichinabo data.",
+   "name": "pg_chibo",
+   "abstract": "A PostgreSQL extension for creating a chibo database",
+   "description": "This library contains a PostgreSQL extension, which creates a basic database structure for storing and analyzing chibo data.",
    "version": "0.0.1",
    "maintainer": [
       "Benito M. Zaragozí <benizar@gmail.com>"
    ],
    "license": "GPL3",
    "provides": {
-      "pg_chichinabo": {
-         "abstract": "A PostgreSQL extension for creating a basic database structure for storing and analyzing chichinabo data.",
-         "file": "pg_chichinabo.sql",
-         "docfile": "doc/pg_chichinabo.md",
+      "pg_chibo": {
+         "abstract": "A PostgreSQL extension for creating a basic database structure for storing and analyzing chibo data.",
+         "file": "pg_chibo.sql",
+         "docfile": "doc/pg_chibo.md",
          "version": "0.0.1"
       }
    },
    "resources": {
       "homepage": "http://www.chichinabo.org/",
       "bugtracker": {
-         "web": "https://github.com/benizar/pg_chichinabo/issues"
+         "web": "https://github.com/chichinabo/pg_chibo/issues"
       },
       "repository": {
-        "url":  "git://github.com/chichinabo/pg_chichinabo.git",
-        "web":  "https://github.com/chichinabo/pg_chichinabo",
+        "url":  "git://github.com/chichinabo/pg_chibo.git",
+        "web":  "https://github.com/chichinabo/pg_chibo",
         "type": "git"
       }
    },

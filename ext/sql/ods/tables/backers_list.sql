@@ -1,5 +1,6 @@
 
-/*
+
+/*******************************
 * backers_list
 */
 CREATE TABLE ods.backers_list (
@@ -12,6 +13,7 @@ CREATE TABLE ods.backers_list (
 /*
 * Sample data. Delete this when your database is in production.
 */
-INSERT INTO ods.backers_list (nickname, firstname, lastname) VALUES ('chibo', 'Chichinabo','Backer');
+INSERT INTO ods.backers_list (nickname, firstname, lastname) VALUES ('chibo', 'Chibo','Backer');
+
 
 

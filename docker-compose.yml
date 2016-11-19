@@ -4,7 +4,7 @@ services:
   # [ server stack ]
   #
   # - postgrest
-  # - postgres/postgis + pg_chichinabo
+  # - postgres/postgis + pg_chibo
   #
   api:
     restart: always
@@ -12,7 +12,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile-api
-    image: chichinabo/popyramids_api
+    image: chibo/popyramids_api
     container_name: popyramids_api
     links:
       - db
@@ -24,8 +24,8 @@ services:
       POSTGREST_DBHOST: db
       POSTGREST_DBNAME: popyramids_db
       POSTGREST_DBPORT: 5432
-      POSTGREST_DBUSER: chichinabo
-      POSTGREST_DBPASS: chichinabo
+      POSTGREST_DBUSER: chibo
+      POSTGREST_DBPASS: chibo
       POSTGREST_DBPOOL: 200
       POSTGREST_PORT: 3000
       POSTGREST_SCHEMA: dms
@@ -41,7 +41,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile-db
-    image: chichinabo/popyramids_db
+    image: chibo/popyramids_db
     container_name: popyramids_db
     ports:
       - "5433:5432"
@@ -50,8 +50,8 @@ services:
       - postgres_data:/var/lib/postgresql/data
       - postgres_backups:/backups
     environment:
-      POSTGRES_PASSWORD: chichinabo
-      POSTGRES_USER: chichinabo
+      POSTGRES_PASSWORD: chibo
+      POSTGRES_USER: chibo
     networks:
       - backend
 
