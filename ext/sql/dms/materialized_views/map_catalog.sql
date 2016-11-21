@@ -11,7 +11,7 @@ WITH ods AS (
 			project,
 			project_id,
 			pyrvariables,
-			dms.pyrintarray_from_ods(pyrdata) AS pyrdata, --CAST DATA TO THIS SCHEMA
+			databook, --CAST DATA TO THIS SCHEMA
 			geoname,
 			labelpoint,
 			ST_GeoHash(labelpoint, 8) AS geohash,

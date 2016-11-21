@@ -1,8 +1,8 @@
 
 
 /*
- *  array_percentages for an integer[]
- */
+*  array_percentages for an integer[]
+*/
 CREATE OR REPLACE FUNCTION dms.array_percentages(v_array integer[], sum_total int)
   RETURNS double precision[] AS
 $BODY$
@@ -30,8 +30,8 @@ $BODY$
 
 
 /*
- *  array_percentages for a double[]
- */
+*  array_percentages for a double[]
+*/
 CREATE OR REPLACE FUNCTION dms.array_percentages(v_array double precision[], sum_total int)
   RETURNS double precision[] AS
 $BODY$

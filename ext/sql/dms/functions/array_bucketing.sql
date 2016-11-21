@@ -1,8 +1,8 @@
 
 
 /*
- *  Add comments
- */
+*  Add comments
+*/
 CREATE OR REPLACE FUNCTION dms.array_bucketing(v_array integer[], buckets integer)
   RETURNS integer[] AS
 $BODY$
@@ -52,8 +52,8 @@ $BODY$
 
 
 /*
- *  Add comments
- */
+*  Add comments
+*/
 CREATE OR REPLACE FUNCTION dms.array_bucketing(r_array int4range[], buckets integer)
   RETURNS int4range[] AS
 $BODY$

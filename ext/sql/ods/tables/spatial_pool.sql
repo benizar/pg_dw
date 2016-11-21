@@ -5,13 +5,13 @@
 */
 CREATE TABLE ods.spatial_pool
 (
-	id serial PRIMARY KEY,
+	id serial NOT NULL,
 	statscode text NOT NULL,
-	refdate date NOT NULL,
 	geoname text NOT NULL,
-	geom geometry NOT NULL,
+	geohash text NOT NULL,
 
-	project_id integer NOT NULL REFERENCES ods.projects_list
+	spatial_project_id integer NOT NULL REFERENCES ods.spatial_projects_list
+
 );
 
 /*
@@ -22,6 +22,7 @@ CREATE TABLE ods.spatial_pool
 CREATE TABLE ods.spatial_pool_pol
 (
 	CHECK (GeometryType(geom) = 'POLYGON' OR GeometryType(geom) = 'MULTIPOLYGON'),
+	boundary geometry, -- Additional column to store a multi/polygon.
 	labelpoint geometry -- Additional column to store a labelpoint.
 
 ) inherits (spatial_pool);
@@ -33,22 +34,24 @@ CREATE TABLE ods.spatial_pool_pol
 CREATE TABLE ods.spatial_pool_pt
 (
 	CHECK (GeometryType(geom) = 'POINT' OR GeometryType(geom) = 'MULTIPOINT'),
+	labelpoint geometry -- Additional column to store a labelpoint.
 
 ) inherits (spatial_pool);
 
 /*
 * on_spatial_pool_insert()
-* check if the new geometry is a point or multipoint; Then we keep that point.
+* check if the new geometry is a point or multipoint.
 */
 CREATE OR REPLACE FUNCTION on_spatial_pool_insert()
 RETURNS TRIGGER AS $$
 BEGIN
 	IF (GeometryType(new.geom) = 'POLYGON' OR GeometryType(new.geom) = 'MULTIPOLYGON') THEN
-        	INSERT INTO ods.spatial_pool_pol (statscode, refdate, geoname, geom, project_id, labelpoint)
-		VALUES (new.statscode, new.refdate, new.geoname, new.geom, new.project_id, ST_PointOnSurface(new.geom));
+        	INSERT INTO ods.spatial_pool_pol (statscode, geoname, geohash, spatial_project_id, boundary, labelpoint)
+		VALUES (new.statscode, new.geoname, ST_GeoHash(ST_PointOnSurface(new.geom), 8), new.spatial_project_id, new.geom, ST_PointOnSurface(new.geom));
 
 	ELSEIF (GeometryType(new.geom) = 'POINT' OR GeometryType(new.geom) = 'MULTIPOINT') THEN
-		INSERT INTO ods.spatial_pool_pt VALUES (new.*);
+        	INSERT INTO ods.spatial_pool_pt (statscode, geoname, geohash, project_id, labelpoint)
+		VALUES (new.statscode, new.geoname, ST_GeoHash(labelpoint, 8), new.spatial_project_id, ST_PointOnSurface(new.geom));
 
 	ELSE
 		RAISE EXCEPTION 'Geometry is not a multi/polygon or a multi/point';

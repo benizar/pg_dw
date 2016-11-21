@@ -1,8 +1,8 @@
 #
-# Makefile for pg_chibo
+# Makefile for pg_chichinabo_dw
 # 
 
-EXTENSION = pg_chibo
+EXTENSION = pg_chichinabo_dw
 EXTVERSION = $(shell grep default_version $(EXTENSION).control | sed -e "s/default_version[[:space:]]*=[[:space:]]*'\([^']*\)'/\1/")
 
 PG_CONFIG = pg_config

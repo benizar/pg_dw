@@ -1,8 +1,8 @@
 
 
 /*
- *  TODO: Compare a shape with a list of predefined shapes and return its name
- */
+*  TODO: Compare a shape with a list of predefined shapes and return its name
+*/
 CREATE OR REPLACE FUNCTION dms.match_shapes(shape geometry)
   RETURNS text AS
 $BODY$

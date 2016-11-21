@@ -5,9 +5,9 @@ set -e
 # Perform all actions as $POSTGRES_USER
 export PGUSER="$POSTGRES_USER"
 
-# Create the 'popyramids_db'
+# Create the 'chichinabo_dw'
 "${psql[@]}" <<- 'EOSQL'
-	CREATE DATABASE popyramids_db;
+	CREATE DATABASE chichinabo_dw;
 
 	-- create a new role that will be used for application SELECT queries only.
 	CREATE ROLE apis NOSUPERUSER INHERIT NOCREATEDB NOCREATEROLE NOREPLICATION VALID UNTIL '2020-06-02 00:00:00';
@@ -17,11 +17,11 @@ export PGUSER="$POSTGRES_USER"
 EOSQL
 
 # Load extensions into both popyramids_db and $POSTGRES_DB databases
-for DB in popyramids_db "$POSTGRES_DB"; do
+for DB in chichinabo_dw "$POSTGRES_DB"; do
 	echo "Loading extensions into $DB"
 	"${psql[@]}" --dbname="$DB" <<-'EOSQL'
 		CREATE EXTENSION IF NOT EXISTS postgis;
 		CREATE EXTENSION geohash_extra;
-		CREATE EXTENSION pg_chibo;
+		CREATE EXTENSION pg_chichinabo_dw;
 EOSQL
 done

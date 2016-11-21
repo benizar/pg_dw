@@ -1,7 +1,8 @@
 
 /*
- *  Add comments
- */
+*  Add comments
+* TODO: Try to replace column names by single letters (a, b, c, etc)
+*/
 CREATE TYPE ods.spsh AS
 (
 	name text, --spreadsheet name

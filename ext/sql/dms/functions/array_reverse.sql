@@ -1,7 +1,8 @@
 
+
 /*
- *  Add comments
- */
+*  Add comments
+*/
 CREATE OR REPLACE FUNCTION dms.array_reverse(anyarray)
   RETURNS anyarray AS
 $BODY$
@@ -12,3 +13,5 @@ SELECT ARRAY(
 );
 $BODY$
   LANGUAGE sql IMMUTABLE STRICT;
+
+

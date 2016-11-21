@@ -1,7 +1,8 @@
 
+
 /*
- *  Add comments
- */
+*  Add comments
+*/
 CREATE OR REPLACE FUNCTION dms.array_greatest_strict(VARIADIC anyarray)
   RETURNS anyelement AS
 $BODY$
@@ -10,3 +11,5 @@ $BODY$
     LIMIT 1 
 $BODY$
   LANGUAGE sql VOLATILE;
+
+

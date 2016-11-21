@@ -6,11 +6,13 @@
 CREATE TABLE ods.data_pool
 (
 	id serial PRIMARY KEY,
-	spsh_book ods.spsh[] NOT NULL, -- an array of spreadsheets
+	statscode text NOT NULL,
+	spshbook ods.spsh[] NOT NULL, -- an array of spreadsheets
 	geoname text NOT NULL,
 
-	project_id integer NOT NULL REFERENCES ods.projects_list,
-	spatial_id integer NOT NULL REFERENCES ods.spatial_pool
+	data_project_id integer NOT NULL REFERENCES ods.data_projects_list,
+	spatial_project_id integer NOT NULL REFERENCES ods.spatial_projects_list -- Specify a project to do a spatial join by a statscode
+
 );
 
 

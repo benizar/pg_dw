@@ -2,22 +2,22 @@
 /*
  *  Add comments
  */
-CREATE OR REPLACE FUNCTION dms.pyrintarray_total_pop(raw_data dms.pyrint[])
-  RETURNS bigint[] AS
+CREATE OR REPLACE FUNCTION dms.spshbook_percentages(raw_data dms.spsh[])
+  RETURNS dms.spsh[] AS
 $BODY$
 DECLARE
 
-  result bigint[];
+  result dms.spsh[];
 --temp variables
   tempi integer := 1;
-  x dms.pyrint;
+  x dms.spsh;
 
 BEGIN
 
   FOREACH x IN ARRAY raw_data
   LOOP
 
-    result[tempi] := dms.pyrint_total_pop(x);
+    result[tempi] := dms.spsh_percentages(x);
     tempi:=tempi+1;
 
   END LOOP;

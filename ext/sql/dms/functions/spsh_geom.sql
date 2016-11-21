@@ -1,13 +1,14 @@
 
+
 /*
  *  Add comments
  */
-CREATE OR REPLACE FUNCTION dms.pyrint_geom(raw_data dms.pyrint)
+CREATE OR REPLACE FUNCTION dms.spsh_geom(raw_data dms.spsh)
   RETURNS geometry AS
 $BODY$
 DECLARE
 
-  percentages dms.pyrfloat;
+  percentages dms.spsh;
   result geometry;
 --temp variables
   coordstep integer:=0;
@@ -18,13 +19,13 @@ DECLARE
 
 BEGIN
 
-percentages:=dms.pyrint_percentages(dms.pyrint_bucketing(raw_data, 'Big groups'::dms.pyrages));
+percentages:=dms.spsh_percentages(dms.spsh_bucketing(raw_data, 'Big groups'::dms.pyrages));
 
-  coordstep:= round(100/array_length(percentages.what_xy,1));
+  coordstep:= round(100/array_length(percentages.col_b,1));
   tempi:=coordstep;
 
 
-  FOREACH y IN ARRAY percentages.what_xy
+  FOREACH y IN ARRAY percentages.col_b
   LOOP
 
     geom:=geom|| '-' || y || ' ' ||tempi ||',';
@@ -37,7 +38,7 @@ percentages:=dms.pyrint_percentages(dms.pyrint_bucketing(raw_data, 'Big groups':
   --geom := geom||'0 100,';
 
 
-  FOREACH x IN ARRAY dms.array_reverse(percentages.what_xx)
+  FOREACH x IN ARRAY dms.array_reverse(percentages.col_c)
   LOOP
 
     tempi:=tempi-coordstep;
@@ -58,3 +59,5 @@ percentages:=dms.pyrint_percentages(dms.pyrint_bucketing(raw_data, 'Big groups':
 END;
 $BODY$
   LANGUAGE plpgsql VOLATILE;
+
+

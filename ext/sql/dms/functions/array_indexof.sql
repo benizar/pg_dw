@@ -1,7 +1,8 @@
 
+
 /*
- *  Add comments
- */
+*  Add comments
+*/
 CREATE OR REPLACE FUNCTION dms.array_indexof(anyarray, anyelement)
   RETURNS integer AS
 $BODY$ 
@@ -11,3 +12,5 @@ $BODY$
     LIMIT 1
 $BODY$
   LANGUAGE sql VOLATILE;
+
+
