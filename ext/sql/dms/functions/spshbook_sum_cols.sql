@@ -10,7 +10,7 @@ DECLARE
   result integer[];
 --temp variables
   tempi integer := 1;
-  x dms.spsh;
+  x ods.spsh;
 
 BEGIN
 

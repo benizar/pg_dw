@@ -17,12 +17,12 @@ CREATE TABLE ods.projects_list (
 /*
 * data_projects_list
 */
-CREATE TABLE ods.data_projects_list () inherits (projects_list);
+CREATE TABLE ods.data_projects_list () inherits (ods.projects_list);
 
 /*
 * spatial_projects_list
 */
-CREATE TABLE ods.spatial_projects_list () inherits (projects_list);
+CREATE TABLE ods.spatial_projects_list () inherits (ods.projects_list);
 
 
 /*

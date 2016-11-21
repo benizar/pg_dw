@@ -12,10 +12,7 @@ CREATE TYPE ods.spsh_meta AS
 CREATE TYPE ods.spsh AS
 (
 	name text, --spreadsheet name
-	colmeta ods.spsh_meta[], --Required one item per column
-	a anyarray,
-	b anyarray,
-	c anyarray
+	colmeta ods.spsh_meta[] --Required one item per column
 );
 
 

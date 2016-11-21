@@ -14,7 +14,7 @@ BEGIN
 INSERT INTO ods.data_projects_list (longname, shortname, refdate, backer_id, provider_id) VALUES (long_name, short_name, ref_date, backid, provid) RETURNING id INTO new_data_project_id;
 
 -- Create a child table to store this project's data
-EXECUTE format('CREATE TABLE IF NOT EXISTS %I () inherits (ods.data_pool);', 'ods.' || short_name);
+EXECUTE format('CREATE TABLE IF NOT EXISTS %I () INHERITS (ods.data_pool);', 'ods.' || short_name);
 
 -- Check the new project's id so it can be used when you insert your data
 RETURN new_data_project_id;

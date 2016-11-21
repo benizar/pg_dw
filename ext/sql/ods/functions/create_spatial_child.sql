@@ -14,7 +14,7 @@ BEGIN
 INSERT INTO ods.spatial_projects_list (longname, shortname, refdate, backer_id, provider_id) VALUES (long_name, short_name, ref_date, backid, provid) RETURNING id INTO new_spatial_project_id;
 
 -- Create a child table to store this project's spatial data
-EXECUTE format('CREATE TABLE IF NOT EXISTS %I () inherits (ods.spatial_pool);', 'ods.' || short_name);
+EXECUTE format('CREATE TABLE IF NOT EXISTS %I () INHERITS (ods.spatial_pool);', 'ods.' || short_name);
 
 -- Check the new project's id so it can be used when you insert your spatial data
 RETURN new_spatial_project_id;

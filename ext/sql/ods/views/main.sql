@@ -6,12 +6,12 @@
 */
 CREATE VIEW ods.main AS
 
-SELECT dp.databook AS databook, 
+SELECT dp.spshbook AS spshbook, 
 	dp.geoname AS geoname, 
 	pr.longname AS longname, 
 	pr.shortname AS shortname, 
 	pr.refdate AS refdate
 	
-FROM ods.data_pool dp INNER JOIN ods.projects_list pr ON pr.id = dp.project_id;
+FROM ods.data_pool dp INNER JOIN ods.projects_list pr ON pr.id = dp.data_project_id;
 
 
