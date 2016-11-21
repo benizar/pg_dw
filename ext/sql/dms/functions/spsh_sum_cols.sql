@@ -9,7 +9,7 @@ CREATE OR REPLACE FUNCTION dms.sum_spsh_cols(ods.spsh)
   RETURNS integer AS
 $BODY$
 DECLARE
-  catcols integer[]:= $1.col_b||$1.col_c;
+  catcols integer[]:= $1.b||$1.c;
   s integer := 0;
   x integer;
 BEGIN

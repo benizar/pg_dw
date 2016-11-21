@@ -3,7 +3,10 @@ MAINTAINER Benito Zaragozí <benizar@gmail.com>
 
 # pg_chibo install
 RUN apt-get update
-RUN apt-get install -y build-essential checkinstall postgresql-server-dev-9.6
+RUN apt-get install -y build-essential checkinstall
+RUN apt-get install -y wget git-core
+RUN apt-get install -y postgresql-server-dev-9.6
+
 
 # copy and compile pg_chibo
 COPY /ext/ /pg_chichinabo/
@@ -14,8 +17,8 @@ RUN cd pg_chichinabo_dw &&\
 	cd .. &&\
 	rm -Rf pg_chichinabo_dw
 
-# copy and compile geohash-extra
-COPY /geohash-extra/ /geohash-extra/
+# Pull and compile geohash-extra
+RUN git clone git@github.com:chichinabo/geohash-extra.git
 
 RUN cd geohash-extra &&\
 	make &&\
@@ -24,7 +27,7 @@ RUN cd geohash-extra &&\
 	rm -Rf geohash-extra
 
 # clean packages
-#RUN apt-get remove -y build-essential checkinstall postgresql-server-dev-9.6
+#RUN apt-get remove -y build-essential checkinstall wget git-core postgresql-server-dev-9.6
 
 RUN mkdir -p /docker-entrypoint-initdb.d
 COPY ./initdb-pg_chichinabo_dw.sh /docker-entrypoint-initdb.d/pg_chichinabo_dw.sh
