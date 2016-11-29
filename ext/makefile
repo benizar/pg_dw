@@ -14,8 +14,7 @@ DOCS = $(wildcard doc/*.md)
 
 all: $(EXTENSION)--$(EXTVERSION).sql
 
-$(EXTENSION)--$(EXTVERSION).sql: sql/dw/schemas.sql \
-sql/dw/types/*.sql \
+$(EXTENSION)--$(EXTVERSION).sql: sql/schemas.sql \
 \
 sql/ods/tables/backers_list.sql \
 sql/ods/tables/providers_list.sql \

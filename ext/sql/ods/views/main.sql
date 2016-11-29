@@ -6,7 +6,7 @@
 */
 CREATE VIEW ods.main AS
 
-SELECT dp.spshbook AS spshbook, 
+SELECT dp.book AS book, 
 	dp.geoname AS geoname, 
 	pr.longname AS longname, 
 	pr.shortname AS shortname, 

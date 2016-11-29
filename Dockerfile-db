@@ -17,7 +17,19 @@ RUN cd pg_chichinabo_dw &&\
 	cd .. &&\
 	rm -Rf pg_chichinabo_dw
 
-# Pull and compile geohash-extra
+######
+# ONLY FOR TESTING EXTENSIONS
+######
+# Clone and compile pg_popyramids (a chichinabo_dw extension)
+RUN git clone https://github.com/chichinabo/pg_popyramids.git
+
+RUN cd pg_popyramids/ext &&\
+	make &&\
+	make install &&\
+	cd .. &&\
+	rm -Rf pg_popyramids
+
+# Clone and compile geohash-extra
 RUN git clone https://github.com/chichinabo/geohash-extra.git
 
 RUN cd geohash-extra &&\

@@ -10,6 +10,10 @@ CREATE TABLE ods.providers_list (
 	url text UNIQUE NOT NULL
 );
 
+
+
+
+
 /*
 * Sample data. Delete this when your database is in production.
 */

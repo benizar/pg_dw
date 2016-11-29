@@ -23,3 +23,6 @@ END
 $func$ LANGUAGE plpgsql;
 
 
+COMMENT ON FUNCTION 
+ods.create_data_pool_child(long_name text, short_name text, ref_date date, backid int, provid int) 
+IS 'Create a data_pool child table. New table is named as the project short name (provider_scale_year)';
