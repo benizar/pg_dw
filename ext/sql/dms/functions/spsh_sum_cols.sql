@@ -20,6 +20,6 @@ BEGIN
   RETURN s;
 END;
 $BODY$
-  LANGUAGE plpgsql VOLATILE
+  LANGUAGE plpgsql VOLATILE;
 
 
