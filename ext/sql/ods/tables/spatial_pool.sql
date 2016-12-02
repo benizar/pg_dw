@@ -41,7 +41,7 @@ CREATE TABLE ods.spatial_pool_pt
 * on_spatial_pool_insert()
 * check if the new geometry is a point or multipoint.
 */
-CREATE OR REPLACE FUNCTION on_spatial_pool_insert()
+CREATE OR REPLACE FUNCTION ods.on_spatial_pool_insert()
 RETURNS TRIGGER AS $$
 BEGIN
 	IF (GeometryType(new.geom) = 'POLYGON' OR GeometryType(new.geom) = 'MULTIPOLYGON') THEN
@@ -63,7 +63,7 @@ $$ LANGUAGE plpgsql;
 /*
 * spatial_pool_insert
 */
-CREATE TRIGGER spatial_pool_insert
+CREATE TRIGGER ods.spatial_pool_insert
     BEFORE INSERT ON ods.spatial_pool
     FOR EACH ROW EXECUTE PROCEDURE on_spatial_pool_insert();
 

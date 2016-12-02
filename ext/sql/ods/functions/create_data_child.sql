@@ -5,7 +5,7 @@
 */
 CREATE OR REPLACE FUNCTION ods.create_data_pool_child(long_name text, short_name text, ref_date date, backid int, provid int)
   RETURNS int AS
-$func$
+$$
 DECLARE
   new_data_project_id int;
 BEGIN
@@ -20,9 +20,9 @@ EXECUTE format('CREATE TABLE IF NOT EXISTS %I () INHERITS (ods.data_pool);', 'od
 RETURN new_data_project_id;
 
 END
-$func$ LANGUAGE plpgsql;
+$$ LANGUAGE plpgsql;
 
 
 COMMENT ON FUNCTION 
 ods.create_data_pool_child(long_name text, short_name text, ref_date date, backid int, provid int) 
-IS 'Create a data_pool child table. New table is named as the project short name (provider_scale_year)';
+IS 'Create a data_pool child table. New table is named as the project short name (provider_scale_year). It returns the id of the newly generated project for this table.';
