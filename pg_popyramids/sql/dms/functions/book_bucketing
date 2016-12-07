@@ -1,0 +1,31 @@
+
+
+/*
+*  Add comments
+*/
+CREATE OR REPLACE FUNCTION dms.spshbook_bucketing(databook ods.spsh[], age_groups text)
+  RETURNS ods.spsh[] AS
+$BODY$
+DECLARE
+
+  result ods.spsh[];
+--temp variables
+  tempi integer := 1;
+  x ods.spsh;
+
+BEGIN
+
+  FOREACH x IN ARRAY databook
+  LOOP
+
+    result[tempi] := ods.spsh_bucketing(x,age_groups);
+    tempi:=tempi+1;
+
+  END LOOP;
+
+  RETURN result;
+END;
+$BODY$
+  LANGUAGE plpgsql IMMUTABLE STRICT;
+
+

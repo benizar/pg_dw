@@ -23,5 +23,6 @@ for DB in chichinabo_dw "$POSTGRES_DB"; do
 		CREATE EXTENSION IF NOT EXISTS postgis;
 		CREATE EXTENSION geohash_extra;
 		CREATE EXTENSION pg_chichinabo_dw;
+		CREATE EXTENSION pg_popyramids;
 EOSQL
 done

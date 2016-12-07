@@ -1,8 +1,8 @@
 #
-# Makefile for pg_chichinabo_dw
+# Makefile for pg_popyramids
 # 
 
-EXTENSION = pg_chichinabo_dw
+EXTENSION = pg_popyramids
 EXTVERSION = $(shell grep default_version $(EXTENSION).control | sed -e "s/default_version[[:space:]]*=[[:space:]]*'\([^']*\)'/\1/")
 
 PG_CONFIG = pg_config
@@ -14,18 +14,7 @@ DOCS = $(wildcard doc/*.md)
 
 all: $(EXTENSION)--$(EXTVERSION).sql
 
-$(EXTENSION)--$(EXTVERSION).sql: sql/schemas.sql \
-\
-sql/ods/tables/backers_list.sql \
-sql/ods/tables/providers_list.sql \
-sql/ods/tables/projects_list.sql \
-sql/ods/tables/spatial_pool.sql \
-sql/ods/tables/data_pool.sql \
-\
-sql/ods/functions/*.sql \
-sql/ods/views/*.sql \
-\
-sql/dms/functions/*.sql
+$(EXTENSION)--$(EXTVERSION).sql: sql/dms/functions/*.sql
 
 	cat $^ > $@
 

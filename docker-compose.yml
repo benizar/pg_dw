@@ -15,14 +15,14 @@ services:
     image: chichinabo/chichinabo_api
     container_name: chichinabo_api
     links:
-      - dw
+      - db
     depends_on:
-      - dw
+      - db
     ports:
       - "3000:3000"
     environment:
-      POSTGREST_DBHOST: dw
-      POSTGREST_DBNAME: chichinabo_dw
+      POSTGREST_DBHOST: db
+      POSTGREST_DBNAME: chichinabo_db
       POSTGREST_DBPORT: 5432
       POSTGREST_DBUSER: chichinabo
       POSTGREST_DBPASS: chichinabo
@@ -35,14 +35,14 @@ services:
     networks:
       - backend
 
-  dw:
+  db:
     restart: always
     # comment on build if want to use the dockerhub build
     build:
       context: .
       dockerfile: Dockerfile-db
-    image: chichinabo/chichinabo_dw
-    container_name: chichinabo_dw
+    image: chichinabo/chichinabo_db
+    container_name: chichinabo_db
     ports:
       - "5433:5432"
     # named volumes come here into play

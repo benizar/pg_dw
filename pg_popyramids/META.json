@@ -1,0 +1,42 @@
+{
+   "name": "pg_popyramids",
+   "abstract": "Extend the pg_chichinabo_dw extensionto store and analyze population pyramids",
+   "description": "This library contains a PostgreSQL extension, which creates a basic database structure for storing and analyzing population pyramids.",
+   "version": "0.0.1",
+   "maintainer": [
+      "Benito M. Zaragozí <benizar@gmail.com>"
+   ],
+   "license": "GPL3",
+   "provides": {
+      "pg_popyramids": {
+         "abstract": "A PostgreSQL extension for creating a basic database structure for storing and analyzing population pyramids.",
+         "file": "pg_popyramids.sql",
+         "docfile": "doc/pg_popyramids.md",
+         "version": "0.0.1"
+      }
+   },
+   "resources": {
+      "homepage": "http://www.chichinabo.org/",
+      "bugtracker": {
+         "web": "https://github.com/chichinabo/pg_popyramids/issues"
+      },
+      "repository": {
+        "url":  "git://github.com/chichinabo/pg_popyramids.git",
+        "web":  "https://github.com/chichinabo/pg_popyramids",
+        "type": "git"
+      }
+   },
+   "generated_by": "Benito M. Zaragozí",
+   "meta-spec": {
+      "version": "1.0.0",
+      "url": "http://pgxn.org/meta/spec.txt"
+   },
+   "tags": [
+      "small data",
+      "big data",
+      "geospatial",
+      "charts",
+      "statistics",
+      "geojson"
+   ]
+}

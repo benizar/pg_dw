@@ -8,29 +8,28 @@ RUN apt-get install -y wget git-core
 RUN apt-get install -y postgresql-server-dev-9.6
 
 
-# copy and compile pg_chibo
-COPY /ext/ /pg_chichinabo_dw/
+# copy and compile dw
+COPY /dw/ /dw/
 
-RUN cd pg_chichinabo_dw &&\
+RUN cd dw &&\
 	make &&\
 	make install &&\
 	cd .. &&\
-	rm -Rf pg_chichinabo_dw
+	rm -Rf dw
 
-######
-# ONLY FOR TESTING EXTENSIONS
-######
-# Clone and compile pg_popyramids (a chichinabo_dw extension)
-RUN git clone https://github.com/chichinabo/pg_popyramids.git
 
-RUN cd pg_popyramids/ext &&\
+# Clone and compile pg_popyramids (a dw extension)
+COPY /pg_popyramids/ /pg_popyramids/
+
+RUN cd pg_popyramids &&\
 	make &&\
 	make install &&\
 	cd .. &&\
 	rm -Rf pg_popyramids
 
-# Clone and compile geohash-extra
-RUN git clone https://github.com/chichinabo/geohash-extra.git
+
+# copy and compile geohash-extra
+COPY /geohash-extra/ /geohash-extra/
 
 RUN cd geohash-extra &&\
 	make &&\
@@ -42,7 +41,7 @@ RUN cd geohash-extra &&\
 #RUN apt-get remove -y build-essential checkinstall apt-utils wget git-core postgresql-server-dev-9.6
 
 RUN mkdir -p /docker-entrypoint-initdb.d
-COPY ./initdb-pg_chichinabo_dw.sh /docker-entrypoint-initdb.d/pg_chichinabo_dw.sh
+COPY ./init-dw.sh /docker-entrypoint-initdb.d/init-dw.sh
 
 
 

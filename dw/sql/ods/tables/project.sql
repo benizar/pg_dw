@@ -56,4 +56,4 @@ project.description ilike ('%' || search || '%')
 
 $$ language sql stable;
 
-comment on function ods.search_project_by_terms(text) is 'Returns projects containing a given search term.';
+comment on function ods.search_project_by_term(text) is 'Returns projects containing a given search term.';
