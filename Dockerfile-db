@@ -19,13 +19,13 @@ RUN cd dw &&\
 
 
 # Clone and compile pg_popyramids (a dw extension)
-COPY /pg_popyramids/ /pg_popyramids/
+COPY /popyramids/ /popyramids/
 
-RUN cd pg_popyramids &&\
+RUN cd popyramids &&\
 	make &&\
 	make install &&\
 	cd .. &&\
-	rm -Rf pg_popyramids
+	rm -Rf popyramids
 
 
 # copy and compile geohash-extra
