@@ -1,0 +1,4 @@
+comment = 'A PostgreSQL extension for creating a DataWarehouse db'
+default_version = '0.0.1'
+relocatable = false
+requires = 'postgis'

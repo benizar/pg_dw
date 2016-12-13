@@ -1,8 +1,8 @@
 #
-# Makefile for pg_popyramids
+# Makefile for pg-dw
 # 
 
-EXTENSION = pg_popyramids
+EXTENSION = pg-dw
 EXTVERSION = $(shell grep default_version $(EXTENSION).control | sed -e "s/default_version[[:space:]]*=[[:space:]]*'\([^']*\)'/\1/")
 
 PG_CONFIG = pg_config
@@ -14,7 +14,13 @@ DOCS = $(wildcard doc/*.md)
 
 all: $(EXTENSION)--$(EXTVERSION).sql
 
-$(EXTENSION)--$(EXTVERSION).sql: sql/dms/functions/*.sql
+$(EXTENSION)--$(EXTVERSION).sql: sql/schemas.sql \
+\
+sql/ods/tables/person.sql \
+sql/ods/tables/provider.sql \
+sql/ods/tables/project.sql \
+\
+sql/dms/functions/*.sql
 
 	cat $^ > $@
 
