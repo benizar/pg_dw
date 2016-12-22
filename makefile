@@ -1,8 +1,8 @@
 #
-# Makefile for pg-dw
+# Makefile for pg_dw
 # 
 
-EXTENSION = pg-dw
+EXTENSION = pg_dw
 EXTVERSION = $(shell grep default_version $(EXTENSION).control | sed -e "s/default_version[[:space:]]*=[[:space:]]*'\([^']*\)'/\1/")
 
 PG_CONFIG = pg_config

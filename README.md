@@ -1,5 +1,5 @@
-# pg_chichinabo
-A PostgreSQL extension for creating a chichinabo database.
+# pg_dw
+A PostgreSQL extension for creating a minimalistic datawarehouse.
 
 ## Docker Compose
 docker-compose build
@@ -9,7 +9,7 @@ docker-compose down
 ## Dockerfiles
 Instructions for installation and deployment are detailed in the Dockerfile. A ready to run version is available at Docker Hub. Just run it as:
 
-    docker run -d -p 5433:5432 --name pg_chichinabo -e POSTGRES_PASSWORD=postgres -d chichinabo/pg_chichinabo
+    docker run -d -p 5433:5432 --name pg_dw -e POSTGRES_PASSWORD=postgres -d benizar/pg_dw
 
 ## Sample data
 Several tables have initial values for testing purposes...

@@ -1,28 +1,28 @@
 {
-   "name": "pg_chichinabo_dw",
-   "abstract": "A PostgreSQL extension for creating a chichinabo database",
-   "description": "This library contains a PostgreSQL extension, which creates a basic database structure for storing and analyzing chichinabo data.",
+   "name": "pg_dw",
+   "abstract": "A PostgreSQL extension for creating a minimalistic datawarehouse.",
+   "description": "This library contains a PostgreSQL extension, which creates a basic database structure for fast and easy storing, analyzing and publishing data.",
    "version": "0.0.1",
    "maintainer": [
       "Benito M. Zaragozí <benizar@gmail.com>"
    ],
    "license": "GPL3",
    "provides": {
-      "pg_chichinabo_dw": {
-         "abstract": "A PostgreSQL extension for creating a basic database structure for storing and analyzing chichinabo data.",
-         "file": "pg_chichinabo_dw.sql",
-         "docfile": "doc/pg_chichinabo_dw.md",
+      "pg_dw": {
+         "abstract": "This library contains a PostgreSQL extension, which creates a basic database structure for fast and easy storing, analyzing and publishing data.",
+         "file": "pg_dw.sql",
+         "docfile": "doc/pg_dw.md",
          "version": "0.0.1"
       }
    },
    "resources": {
       "homepage": "http://www.chichinabo.org/",
       "bugtracker": {
-         "web": "https://github.com/chichinabo/pg_chichinabo_dw/issues"
+         "web": "https://github.com/benizar/pg_dw/issues"
       },
       "repository": {
-        "url":  "git://github.com/chichinabo/pg_chichinabo_dw.git",
-        "web":  "https://github.com/chichinabo/pg_chichinabo_dw",
+        "url":  "git://github.com/benizar/pg_dw.git",
+        "web":  "https://github.com/benizar/pg_dw",
         "type": "git"
       }
    },
