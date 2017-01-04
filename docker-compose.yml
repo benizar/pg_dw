@@ -1,0 +1,25 @@
+version: '2'
+services:
+  #
+  # [ server stack ]
+  #
+  # - postgrest
+  # - postgres/postgis
+  #
+
+  db:
+    restart: always
+    # comment on build if want to use the dockerhub build
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: benizar/dw
+    container_name: dw
+    # redirect to 5433 in case you already have postgres installed
+    ports:
+      - "5433:5432"
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+
+
