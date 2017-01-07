@@ -1,4 +1,4 @@
 comment = 'A PostgreSQL extension for creating a minimalistic dataWarehouse'
 default_version = '0.0.1'
 relocatable = false
-requires = 'postgis'
+requires = 'postgis, pgcrypto, plpython3u, bedquilt, pg_geohash_extra'

@@ -11,18 +11,13 @@ Instructions for installation and deployment are detailed in the Dockerfile. A r
 
     docker run -d -p 5433:5432 --name pg_dw -e POSTGRES_PASSWORD=postgres -d benizar/pg_dw
 
-## Sample data
-Several tables have initial values for testing purposes...
-
-You can upload some sample data from these repositories:
-
 
 ## Future work
 * New functionalities:
   * Log usage statistics (e.g. user/usage maps and bounding box statistics).
 * Improve features:
-  * In PostgreSQL 9.5 we can create customized range queries for big range groups.
-  * Improve the pyramid classification methods.
+  * Since PostgreSQL 9.5 we can create customized range queries for big range groups.
+  * Improve classification methods.
 * Data:
   * Compile a detailed list of available sources.
-  * Import more and more Open Data
+  * Import more and more data

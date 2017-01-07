@@ -1,4 +1,4 @@
-FROM benizar/postgis
+FROM benizar/postgis-ext:9.6-2.3
 MAINTAINER Benito Zaragozí <benizar@gmail.com>
 
 ######################
@@ -11,13 +11,6 @@ ENV GEOHASH https://github.com/benizar/pg_geohash_extra.git
 ENV BEDQUILT https://github.com/benizar/bedquilt-core.git
 ENV DW https://github.com/benizar/pg_dw.git
 
-
-##############
-# Installation
-##############
-
-# Ensure the package repository is up to date
-RUN apt-get update
 
 ################
 # Install pg_adm
