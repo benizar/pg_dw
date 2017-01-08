@@ -1,12 +1,13 @@
 
 
 -- Basic data warehouse schemas
-CREATE SCHEMA IF NOT EXISTS stage_spatial; -- spatial data
-CREATE SCHEMA IF NOT EXISTS stage; -- stage area
-CREATE SCHEMA IF NOT EXISTS ods; --operational data store
-CREATE SCHEMA IF NOT EXISTS dms; --data marts
-CREATE SCHEMA IF NOT EXISTS logs; -- Activity registry
+CREATE SCHEMA IF NOT EXISTS stage; -- Stage area for bedquilt docstore
+CREATE SCHEMA IF NOT EXISTS ods; -- Operational data store. Extract data from stage area.
+CREATE SCHEMA IF NOT EXISTS dms; -- Data marts for publishing data throught services.
+CREATE SCHEMA IF NOT EXISTS logs; -- Log activity.
 
+
+-- Create users for publishing services.
 
 --grant usage once the schemas are created
 --GRANT USAGE ON SCHEMA ods TO apis;
