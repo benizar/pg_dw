@@ -2,9 +2,12 @@
 A PostgreSQL extension for creating a minimalistic datawarehouse.
 
 ## Docker Compose
-docker-compose build
-docker-compose up
-docker-compose down
+
+Use docker compose for testing the extension 
+
+    docker-compose build
+    docker-compose up
+    docker-compose down
 
 ## Dockerfiles
 Instructions for installation and deployment are detailed in the Dockerfile. A ready to run version is available at Docker Hub. Just run it as:
@@ -13,11 +16,15 @@ Instructions for installation and deployment are detailed in the Dockerfile. A r
 
 
 ## Future work
+
 * New functionalities:
   * Log usage statistics (e.g. user/usage maps and bounding box statistics).
+  * Geohash aggregates
+
 * Improve features:
   * Since PostgreSQL 9.5 we can create customized range queries for big range groups.
   * Improve classification methods.
+
 * Data:
   * Compile a detailed list of available sources.
-  * Import more and more data
+  * Import more and more data for testing.

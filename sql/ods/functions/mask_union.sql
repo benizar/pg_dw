@@ -4,7 +4,7 @@
 -- http://dba.stackexchange.com/a/118964
 -- SELECT maskunion('public', 'tiles_2015_10_', 'newtable');
 --
-CREATE OR REPLACE FUNCTION ods.maskunion(_schema text, _tblbase text, _target text)
+CREATE OR REPLACE FUNCTION maskunion(_schema text, _tblbase text, _target text)
   RETURNS void AS
 $func$
 DECLARE
