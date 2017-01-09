@@ -22,9 +22,7 @@ all: $(EXTENSION)--$(EXTVERSION).sql
 
 $(EXTENSION)--$(EXTVERSION).sql: sql/schemas.sql \
                                  \
-                                 sql/ods/tables/person.sql \
-                                 sql/ods/tables/provider.sql \
-                                 sql/ods/tables/project.sql \
+                                 sql/ods/functions/*.sql \
                                  \
                                  sql/dms/functions/*.sql
 

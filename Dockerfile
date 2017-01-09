@@ -47,8 +47,15 @@ RUN make install
 # Install pg_dw
 ################
 WORKDIR /install-ext
-RUN git clone $DW
-WORKDIR /install-ext/pg_dw
+
+ADD doc doc/
+ADD sql sql/
+ADD test test/
+ADD makefile makefile
+ADD META.json META.json
+ADD pg_dw.control pg_dw.control
+
+RUN make
 RUN make install
 
 
