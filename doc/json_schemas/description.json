@@ -1,0 +1,8 @@
+{
+      "type": "string",
+      "minLength": 1,
+      "title": "Description schema.",
+      "description": "An explanation about the purpose of this instance.",
+      "default": "A description of the item.",
+      "id": "description"
+}

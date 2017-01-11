@@ -1,0 +1,9 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "string",
+  "minLength": 1,
+  "title": "UploadDate schema.",
+  "description": "An explanation about the purpose of this instance.",
+  "default": "Date when this media object was uploaded to this site.",
+  "id": "uploadDate"
+}

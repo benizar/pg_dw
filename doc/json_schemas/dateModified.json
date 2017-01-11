@@ -1,0 +1,10 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+
+      "type": "string",
+      "minLength": 1,
+      "title": "DateModified schema.",
+      "description": "An explanation about the purpose of this instance.",
+      "default": "The date on which the CreativeWork was most recently modified or when the item's entry was modified within a DataFeed.",
+      "id": "dateModified"
+    }

@@ -1,0 +1,11 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "type": "integer",
+    "maximum": 100,
+    "minimum": 1,
+    "title": "SchemaVersion schema.",
+    "description": "An explanation about the purpose of this instance.",
+    "default": 1,
+    "enum": [1],
+    "id": "schemaVersion"
+}

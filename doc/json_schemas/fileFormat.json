@@ -1,0 +1,10 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+      "type": "string",
+      "minLength": 1,
+      "title": "FileFormat schema.",
+      "description": "An explanation about the purpose of this instance.",
+      "default": "application/geo+json",
+      "enum": ["application/geo+json"],
+      "id": "fileFormat"
+    }

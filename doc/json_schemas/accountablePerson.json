@@ -1,0 +1,68 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+
+      "type": "object",
+      "title": "AccountablePerson schema.",
+      "description": "An explanation about the purpose of this instance.",
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "title": "Name schema.",
+          "description": "An explanation about the purpose of this instance.",
+          "default": "The name of the item.",
+          "id": "name"
+        },
+        "email": {
+          "type": "string",
+          "minLength": 1,
+          "title": "Email schema.",
+          "description": "An explanation about the purpose of this instance.",
+          "default": "Email address.",
+          "id": "email"
+        },
+        "organization": {
+          "type": "object",
+          "title": "Department schema.",
+          "description": "An explanation about the purpose of this instance.",
+          "properties": {
+            "name": {
+              "type": "string",
+              "minLength": 1,
+              "title": "Name schema.",
+              "description": "An explanation about the purpose of this instance.",
+              "default": "The name of the item.",
+              "id": "name"
+            },
+            "alternateName": {
+              "type": "string",
+              "minLength": 1,
+              "title": "AlternateName schema.",
+              "description": "An explanation about the purpose of this instance.",
+              "default": "An alias for the item.",
+              "id": "alternateName"
+            },
+            "description": {
+              "type": "string",
+              "minLength": 1,
+              "title": "Description schema.",
+              "description": "An explanation about the purpose of this instance.",
+              "default": "A description of the item.",
+              "id": "description"
+            }
+          },
+          "id": "organization",
+          "required": [
+            "name",
+            "alternateName",
+            "description"
+          ]
+        }
+      },
+      "id": "accountablePerson",
+      "required": [
+        "name",
+        "email",
+        "organization"
+      ]
+    }
