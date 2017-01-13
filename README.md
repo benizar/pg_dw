@@ -20,6 +20,8 @@ Instructions for installation and deployment are detailed in the Dockerfile. A r
 * New functionalities:
   * Log usage statistics (e.g. user/usage maps and bounding box statistics).
   * Geohash aggregates
+   * [group by](https://thespatialperspective.wordpress.com/)).
+   * [scales](https://github.com/elastic/kibana/issues/2618)
 
 * Improve features:
   * Since PostgreSQL 9.5 we can create customized range queries for big range groups.

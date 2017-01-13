@@ -1,0 +1,5 @@
+
+CREATE SCHEMA IF NOT EXISTS logs;
+COMMENT ON SCHEMA logs IS 'Log activity.';
+
+
